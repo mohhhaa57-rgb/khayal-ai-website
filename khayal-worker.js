@@ -30,6 +30,10 @@ async function streamToBase64(stream) {
   return btoa(binary);
 }
 
+function containsArabic(text) {
+  return /[\u0600-\u06FF]/.test(text);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -63,7 +67,7 @@ export default {
 
     try {
       const body = await request.json();
-      const prompt = String(body.prompt || "").trim();
+      let prompt = String(body.prompt || "").trim();
 
       if (!prompt) {
         return json({
@@ -71,6 +75,23 @@ export default {
         }, 400);
       }
 
+      // ترجمة الوصف العربي إلى الإنجليزية تلقائيًا
+      if (containsArabic(prompt)) {
+        const translation = await env.AI.run(
+          "@cf/meta/m2m100-1.2b",
+          {
+            text: prompt,
+            source_lang: "ar",
+            target_lang: "en"
+          }
+        );
+
+        if (translation?.translated_text) {
+          prompt = translation.translated_text;
+        }
+      }
+
+      // توليد الصورة
       const result = await env.AI.run(
         "@cf/stabilityai/stable-diffusion-xl-base-1.0",
         {
