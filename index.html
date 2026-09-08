@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Khayal AI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #08090d;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 18px 20px;
+      border-bottom: 1px solid #22242d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #8b5cf6;
+    }
+
+    .login {
+      background: #171923;
+      border: 1px solid #30323d;
+      color: white;
+      padding: 9px 16px;
+      border-radius: 10px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 55px 20px 30px;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #8b5cf6;
+    }
+
+    .hero p {
+      color: #a5a7b3;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .tools {
+      max-width: 950px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      background: #11131a;
+      border: 1px solid #292c37;
+      color: #ddd;
+      padding: 16px 8px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .tab.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+
+    .panel {
+      background: #11131a;
+      border: 1px solid #292c37;
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .panel h2 {
+      margin-bottom: 8px;
+    }
+
+    .panel p {
+      color: #999daa;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      resize: vertical;
+      background: #08090d;
+      color: white;
+      border: 1px solid #30333e;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #8b5cf6;
+    }
+
+    .upload {
+      border: 2px dashed #353846;
+      border-radius: 14px;
+      padding: 35px 15px;
+      text-align: center;
+      color: #999daa;
+      margin-bottom: 15px;
+    }
+
+    input[type="file"] {
+      margin-top: 15px;
+    }
+
+    .generate {
+      width: 100%;
+      margin-top: 15px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #8b5cf6;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .generate:hover {
+      opacity: 0.9;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #08090d;
+      border: 1px solid #292c37;
+      text-align: center;
+      color: #aaa;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666975;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .tabs {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Khayal <span>AI</span></div>
+    <button class="login">تسجيل الدخول</button>
+  </header>
+
+  <section class="hero">
+    <h1>حوّل <span>خيالك</span> إلى واقع</h1>
+    <p>
+      أنشئ صورًا ومقاطع فيديو وحرك صورك باستخدام الذكاء الاصطناعي.
+    </p>
+  </section>
+
+  <main class="tools">
+
+    <div class="tabs">
+
+      <button class="tab active" onclick="showTool('image', this)">
+        🖼️ توليد الصور
+      </button>
+
+      <button class="tab" onclick="showTool('video', this)">
+        🎬 توليد الفيديو
+      </button>
+
+      <button class="tab" onclick="showTool('animate', this)">
+        ✨ تحريك الصور
+      </button>
+
+    </div>
+
+    <!-- توليد الصور -->
+    <section id="image" class="panel">
+
+      <h2>🖼️ توليد صورة</h2>
+
+      <p>
+        اكتب وصف الصورة التي تريد إنشاءها.
+      </p>
+
+      <textarea
+        id="imagePrompt"
+        placeholder="مثال: مدينة مستقبلية ليلية، أضواء نيون، سينمائية، واقعية جدًا..."
+      ></textarea>
+
+      <button class="generate" onclick="generate('image')">
+        ✨ إنشاء الصورة
+      </button>
+
+      <div id="imageResult" class="result">
+        🚧 سيتم ربط مولد الصور بالذكاء الاصطناعي هنا.
+      </div>
+
+    </section>
+
+
+    <!-- توليد الفيديو -->
+    <section id="video" class="panel" style="display:none;">
+
+      <h2>🎬 توليد فيديو</h2>
+
+      <p>
+        اكتب وصف الفيديو الذي تريد إنشاءه.
+      </p>
+
+      <textarea
+        id="videoPrompt"
+        placeholder="مثال: سيارة رياضية تسير بسرعة في مدينة مستقبلية ليلًا..."
+      ></textarea>
+
+      <button class="generate" onclick="generate('video')">
+        🎬 إنشاء الفيديو
+      </button>
+
+      <div id="videoResult" class="result">
+        🚧 سيتم ربط مولد الفيديو بالذكاء الاصطناعي هنا.
+      </div>
+
+    </section>
+
+
+    <!-- تحريك الصور -->
+    <section id="animate" class="panel" style="display:none;">
+
+      <h2>✨ تحريك صورة</h2>
+
+      <p>
+        ارفع صورة واكتب الحركة التي تريدها.
+      </p>
+
+      <div class="upload">
+
+        📤
+        <br><br>
+
+        اختر الصورة التي تريد تحريكها
+
+        <br>
+
+        <input type="file" accept="image/*">
+
+      </div>
+
+      <textarea
+        placeholder="مثال: اجعل الشخص يحرك رأسه والرياح تحرك الشعر..."
+      ></textarea>
+
+      <button class="generate" onclick="generate('animate')">
+        ✨ تحريك الصورة
+      </button>
+
+      <div id="animateResult" class="result">
+        🚧 سيتم ربط محرك تحريك الصور هنا.
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    © 2026 Khayal AI — جميع الحقوق محفوظة
+  </footer>
+
+
+  <script>
+
+    function showTool(tool, button) {
+
+      document.getElementById("image").style.display = "none";
+      document.getElementById("video").style.display = "none";
+      document.getElementById("animate").style.display = "none";
+
+      document.getElementById(tool).style.display = "block";
+
+      document.querySelectorAll(".tab").forEach(function(tab) {
+        tab.classList.remove("active");
+      });
+
+      button.classList.add("active");
+    }
+
+
+    function generate(type) {
+
+      let result = document.getElementById(type + "Result");
+
+      result.style.display = "block";
+
+      result.innerHTML =
+        "⏳ جاري تجهيز النظام...<br><br>" +
+        "سيتم ربط الذكاء الاصطناعي في الخطوة القادمة.";
+
+    }
+
+  </script>
+
+</body>
+</html>
