@@ -2,623 +2,517 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#03050f">
-<title>Khayal AI — استوديو الإبداع</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070817">
+
+<title>Khayal AI - خيال AI</title>
 
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-  margin:0;
-  min-height:100vh;
-  background:#03050f;
+  font-family:Arial,Tahoma,sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(104,45,255,.22),transparent 35%),
+    linear-gradient(180deg,#08091b,#050615 70%,#070817);
   color:#fff;
-  font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;
+  min-height:100vh;
   overflow-x:hidden;
 }
 
-body:before{
-  content:"";
-  position:fixed;
-  inset:-20%;
-  z-index:-2;
-  background:
-    radial-gradient(circle at 50% 5%,#171044 0,transparent 35%),
-    radial-gradient(circle at 10% 55%,#101d55 0,transparent 32%),
-    radial-gradient(circle at 90% 85%,#280b48 0,transparent 30%);
-  filter:blur(20px)
-}
-
-body:after{
+body::before{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-1;
-  opacity:.35;
+  pointer-events:none;
+  opacity:.18;
   background-image:
-    linear-gradient(#ffffff08 1px,transparent 1px),
-    linear-gradient(90deg,#ffffff08 1px,transparent 1px);
+    linear-gradient(rgba(120,90,255,.18) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(120,90,255,.18) 1px,transparent 1px);
   background-size:42px 42px;
-  mask-image:linear-gradient(to bottom,#000,transparent 85%)
-}
-
-button{
-  font:inherit;
-  cursor:pointer
-}
-
-.app{
-  width:min(760px,100%);
-  margin:auto;
-  padding:16px 14px 48px
+  mask-image:linear-gradient(to bottom,black,transparent);
 }
 
 /* HEADER */
 
-.header{
+header{
   position:sticky;
-  top:10px;
-  z-index:20;
+  top:0;
+  z-index:100;
+  height:110px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 5%;
+  background:rgba(7,8,23,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(130,90,255,.28);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  direction:ltr;
+}
+
+.logo-icon{
+  width:76px;
   height:76px;
-  padding:9px 12px;
-  border:1px solid #27305c;
-  border-radius:24px;
-  background:rgba(5,8,22,.82);
-  backdrop-filter:blur(22px);
+  border-radius:25px;
   display:flex;
   align-items:center;
-  gap:12px;
-  box-shadow:0 18px 60px #0009
+  justify-content:center;
+  font-size:40px;
+  background:linear-gradient(135deg,#5730ff,#9c2cff);
+  box-shadow:0 0 35px rgba(109,51,255,.45);
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex:1
+.logo-text{
+  font-size:42px;
+  font-weight:800;
+  letter-spacing:-1px;
 }
 
-.brand-mark{
-  width:49px;
-  height:49px;
-  border-radius:16px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(145deg,#267bff,#762fff 55%,#d63ce8);
-  box-shadow:0 0 30px #693cff88
-}
-
-.brand-mark svg{
-  width:29px
-}
-
-.brand-name{
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:-.5px
-}
-
-.brand-name span{
-  background:linear-gradient(90deg,#fff,#7f6cff,#e34cff);
+.logo-text span{
+  background:linear-gradient(90deg,#fff,#b77cff);
   -webkit-background-clip:text;
-  color:transparent
-}
-
-.brand-sub{
-  font-size:9px;
-  color:#8994b8;
-  margin-top:2px
+  color:transparent;
 }
 
 .login{
-  border:1px solid #7049ff;
-  border-radius:17px;
-  padding:12px 15px;
-  color:#fff;
-  background:linear-gradient(120deg,#5431f7,#8138e9);
-  box-shadow:0 8px 28px #7136ff66;
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  gap:7px
+  border:0;
+  color:white;
+  font-size:22px;
+  font-weight:bold;
+  padding:20px 32px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#5630ff,#a62bff);
+  box-shadow:0 10px 35px rgba(106,42,255,.35);
 }
 
-.login svg{
-  width:18px
-}
+/* MAIN */
 
-/* HERO */
+.container{
+  width:min(1100px,92%);
+  margin:auto;
+}
 
 .hero{
   text-align:center;
-  padding:58px 10px 34px
-}
-
-.hero .pill{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:7px 12px;
-  border:1px solid #473a85;
-  border-radius:999px;
-  background:#0c0b25;
-  color:#bbaaff;
-  font-size:11px;
-  margin-bottom:18px
-}
-
-.dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#9a5cff;
-  box-shadow:0 0 12px #9a5cff
+  padding:100px 0 65px;
 }
 
 .hero h1{
-  font-size:clamp(37px,9vw,66px);
-  line-height:1.13;
-  margin:0;
-  font-weight:950;
-  letter-spacing:-2px
+  font-size:clamp(44px,8vw,78px);
+  line-height:1.25;
+  font-weight:900;
+  margin-bottom:25px;
 }
 
-.gradient{
-  background:linear-gradient(90deg,#fff 5%,#b978ff 48%,#e44cff 95%);
+.hero h1 span{
+  background:linear-gradient(90deg,#fff,#9e68ff);
   -webkit-background-clip:text;
-  color:transparent
+  color:transparent;
 }
 
 .hero p{
-  max-width:590px;
-  margin:18px auto 0;
-  color:#9da7c4;
-  font-size:16px;
-  line-height:2
-}
-
-/* FEATURE CARDS */
-
-.features{
-  display:grid;
-  gap:22px
-}
-
-.feature{
-  position:relative;
-  min-height:285px;
-  padding:27px 25px;
-  border-radius:31px;
-  border:1px solid #293474;
-  background:linear-gradient(145deg,rgba(16,20,52,.93),rgba(5,10,27,.96));
-  box-shadow:0 28px 70px #0009;
-  overflow:hidden;
-  display:grid;
-  grid-template-columns:180px 1fr;
-  align-items:center;
-  gap:22px;
-  transition:.3s
-}
-
-.feature:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 18% 50%,var(--glow),transparent 35%);
-  opacity:.35;
-  pointer-events:none
-}
-
-.feature:hover{
-  transform:translateY(-4px);
-  border-color:#6655e8
-}
-
-.feature.video{
-  --glow:#5e30ff;
-  border-color:#35339a
-}
-
-.feature.image{
-  --glow:#0088ff;
-  border-color:#155caa
-}
-
-.feature.motion{
-  --glow:#a52cff;
-  border-color:#6529ad
-}
-
-.art{
-  position:relative;
-  height:190px;
-  display:grid;
-  place-items:center
-}
-
-.art-ring{
-  position:absolute;
-  width:160px;
-  height:160px;
-  border-radius:50%;
-  border:1px solid #7949ff66;
-  box-shadow:0 0 45px #713cff55,inset 0 0 35px #713cff22
-}
-
-.art-ring:after{
-  content:"";
-  position:absolute;
-  inset:17px;
-  border-radius:50%;
-  border:1px solid #4e8cff44
-}
-
-.art-icon{
-  position:relative;
-  width:104px;
-  height:104px;
-  border-radius:27px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(145deg,#171f5e,#090d2a);
-  border:1px solid #7a63ff;
-  box-shadow:0 0 28px #703cff99,inset 0 0 28px #6538ff44
-}
-
-.art-icon svg{
-  width:62px;
-  height:62px;
-  stroke:url(#g);
-  filter:drop-shadow(0 0 9px #855aff)
-}
-
-.orb{
-  position:absolute;
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:#62b8ff;
-  box-shadow:0 0 18px #62b8ff;
-  top:18px;
-  right:22px
-}
-
-.feature.image .art-icon{
-  border-color:#159cff;
-  box-shadow:0 0 30px #008cff99,inset 0 0 30px #007cff44
-}
-
-.feature.image .art-ring{
-  border-color:#18a8ff66
-}
-
-.feature.motion .art-icon{
-  border-color:#bd4cff
-}
-
-.feature.motion .art-ring{
-  border-color:#c04cff66
-}
-
-.feature-copy{
-  position:relative;
-  text-align:right
-}
-
-.kicker{
-  font-size:10px;
-  letter-spacing:2px;
-  color:#a78bff;
-  font-weight:900
-}
-
-.feature h2{
-  font-size:31px;
-  margin:8px 0 10px;
-  font-weight:900
-}
-
-.feature p{
-  margin:0;
-  color:#919bb9;
+  color:#9ea4ca;
+  font-size:22px;
   line-height:1.9;
-  font-size:15px
+  max-width:760px;
+  margin:auto;
 }
 
-.open{
-  margin-top:22px;
-  width:50px;
-  height:50px;
-  border-radius:50%;
+/* MODES */
+
+.modes{
   display:grid;
-  place-items:center;
-  border:1px solid #6555ff;
-  background:#0b1030;
-  color:#fff;
-  box-shadow:0 0 22px #643cff55
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-bottom:70px;
 }
 
-.open svg{
-  width:21px
+.mode{
+  min-height:245px;
+  border:2px solid rgba(110,105,190,.4);
+  border-radius:34px;
+  background:rgba(10,12,35,.68);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.mode:hover{
+  transform:translateY(-5px);
+  border-color:#7044ff;
+  box-shadow:0 15px 45px rgba(94,46,255,.2);
+}
+
+.mode.active{
+  border-color:#8745ff;
+  background:linear-gradient(145deg,#5730ff,#9d2cff);
+  box-shadow:0 18px 55px rgba(102,43,255,.3);
+}
+
+.mode-icon{
+  font-size:48px;
+  margin-bottom:25px;
+}
+
+.mode-title{
+  font-size:27px;
+  font-weight:bold;
 }
 
 /* WORKSPACE */
 
 .workspace{
-  margin-top:24px;
-  padding:22px;
-  border-radius:30px;
-  border:1px solid #303b70;
-  background:rgba(8,12,29,.9);
-  box-shadow:0 28px 70px #0009
+  border:2px solid rgba(103,98,180,.38);
+  border-radius:38px;
+  padding:45px;
+  background:rgba(6,8,25,.72);
+  box-shadow:0 20px 80px rgba(0,0,0,.22);
+  margin-bottom:70px;
 }
 
-.workspace.hidden{
-  display:none
+.workspace h2{
+  text-align:center;
+  font-size:42px;
+  margin-bottom:14px;
 }
 
-.workspace h3{
-  margin:0 0 5px;
-  font-size:23px
+.workspace-sub{
+  text-align:center;
+  color:#9298be;
+  font-size:19px;
+  line-height:1.8;
+  margin-bottom:30px;
 }
 
-.workspace p{
-  margin:0 0 18px;
-  color:#8e99b9;
-  font-size:13px
-}
+/* TOGGLE */
 
-.mode{
+.toggle{
   display:flex;
-  gap:8px;
-  margin-bottom:15px
+  justify-content:center;
+  gap:10px;
+  margin-bottom:25px;
 }
 
-.mode button{
-  flex:1;
-  padding:13px;
-  border-radius:16px;
-  border:1px solid #303b68;
-  background:#0d142b;
-  color:#aab4d0
+.toggle button{
+  border:1px solid #393b69;
+  background:#0d102b;
+  color:#b7bbda;
+  padding:12px 25px;
+  border-radius:15px;
+  font-size:17px;
 }
 
-.mode button.active{
-  background:linear-gradient(100deg,#276dff,#8a35ff);
+.toggle button.active{
   color:#fff;
-  border-color:#8b61ff
+  background:linear-gradient(135deg,#5630ff,#912eff);
+  border-color:transparent;
 }
 
-.label{
-  display:flex;
-  justify-content:space-between;
-  color:#dce1f2;
-  font-size:13px;
-  font-weight:800;
-  margin:10px 3px 8px
+/* TEXTAREA */
+
+.prompt-wrap{
+  position:relative;
 }
 
 textarea{
   width:100%;
-  height:145px;
-  resize:none;
-  border-radius:20px;
-  border:1px solid #34416f;
-  background:#050918;
-  color:#fff;
-  padding:17px;
-  font-size:16px;
+  min-height:280px;
+  resize:vertical;
+  border-radius:30px;
+  border:2px solid #30345d;
+  outline:none;
+  background:#080a20;
+  color:white;
+  padding:30px;
+  font-size:23px;
   line-height:1.8;
-  outline:none
+  direction:auto;
 }
 
 textarea:focus{
-  border-color:#875cff;
-  box-shadow:0 0 0 3px #875cff22
+  border-color:#7547ff;
+  box-shadow:0 0 30px rgba(112,65,255,.12);
 }
+
+.counter{
+  text-align:left;
+  color:#747a9f;
+  font-size:18px;
+  margin-top:12px;
+}
+
+/* BUTTON */
 
 .generate{
   width:100%;
-  margin-top:14px;
   border:0;
-  border-radius:20px;
-  padding:16px;
-  color:#fff;
-  font-weight:900;
-  font-size:17px;
-  background:linear-gradient(100deg,#286eff,#8234ff,#e23ccf);
-  box-shadow:0 12px 32px #713cff55
+  border-radius:27px;
+  margin-top:32px;
+  padding:25px;
+  color:white;
+  font-size:27px;
+  font-weight:bold;
+  background:linear-gradient(135deg,#5830ff,#a52cff);
+  box-shadow:0 15px 40px rgba(99,42,255,.28);
+  cursor:pointer;
+  transition:.25s;
+}
+
+.generate:hover{
+  transform:translateY(-2px);
 }
 
 .generate:disabled{
   opacity:.65;
-  cursor:wait
+  cursor:wait;
 }
 
 /* RESULT */
 
 .result{
   display:none;
-  margin-top:16px;
-  border:1px dashed #364579;
-  border-radius:20px;
-  overflow:hidden;
-  background:#050918
+  margin-top:45px;
+  border:2px solid #292d52;
+  border-radius:32px;
+  padding:20px;
+  background:#07091d;
 }
 
 .result.show{
-  display:block
+  display:block;
 }
 
 .result-image-wrap{
   position:relative;
-  overflow:hidden
+  width:100%;
+  overflow:hidden;
+  border-radius:24px;
 }
 
 .result img{
-  display:block;
   width:100%;
-  max-height:520px;
-  object-fit:cover
+  display:block;
+  border-radius:24px;
 }
+
+/* WATERMARK PREVIEW */
+
+.watermark-preview{
+  position:absolute;
+  right:18px;
+  bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 12px;
+  border-radius:12px;
+  background:rgba(5,7,20,.58);
+  border:1px solid rgba(255,255,255,.25);
+  backdrop-filter:blur(8px);
+  color:rgba(255,255,255,.78);
+  font-size:13px;
+  font-weight:bold;
+  direction:ltr;
+  pointer-events:none;
+}
+
+.watermark-star{
+  font-size:14px;
+  color:#b98cff;
+}
+
+/* ACTIONS */
 
 .result-actions{
   display:flex;
-  gap:8px;
-  padding:10px
+  gap:14px;
+  margin-top:18px;
 }
 
-.result-actions>*{
+.result-actions a,
+.result-actions button{
   flex:1;
   text-align:center;
-  padding:11px;
-  border-radius:13px;
-  border:1px solid #35416c;
-  background:#10182f;
-  color:#fff;
+  border:0;
+  border-radius:17px;
+  padding:17px;
+  color:white;
   text-decoration:none;
-  font-weight:800;
-  font-size:12px
+  font-size:18px;
+  font-weight:bold;
+  background:linear-gradient(135deg,#5630ff,#982eff);
+  cursor:pointer;
 }
 
-.result-actions .primary{
-  background:linear-gradient(90deg,#286eff,#a235ed);
-  border:0
+.result-actions .secondary{
+  background:#171a38;
+  border:1px solid #343862;
 }
+
+/* LOADING */
 
 .loading{
-  padding:45px;
   text-align:center;
-  color:#9aa4c2
+  padding:55px 20px;
+  color:#aaaed0;
+  font-size:20px;
 }
 
 .spinner{
-  display:inline-block;
-  width:35px;
-  height:35px;
-  border:4px solid #ffffff25;
-  border-top-color:#a15cff;
+  width:42px;
+  height:42px;
+  margin:auto;
+  border:4px solid #292d50;
+  border-top-color:#9142ff;
   border-radius:50%;
-  animation:spin .8s linear infinite
+  display:block;
+  animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
   to{transform:rotate(360deg)}
 }
 
-/* WATERMARK NOTE */
+/* TOAST */
 
-.watermark-note{
-  text-align:center;
-  margin-top:12px;
-  color:#677391;
-  font-size:10px
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%) translateY(100px);
+  z-index:500;
+  background:#15182f;
+  border:1px solid #464a78;
+  color:white;
+  padding:15px 24px;
+  border-radius:15px;
+  opacity:0;
+  transition:.3s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
 }
 
 /* FOOTER */
 
-.footer{
+footer{
   text-align:center;
-  color:#66718f;
-  font-size:11px;
-  padding:34px 0 10px
-}
-
-.toast{
-  position:fixed;
-  left:50%;
-  top:20px;
-  transform:translate(-50%,-150%);
-  z-index:50;
-  padding:12px 18px;
-  border-radius:16px;
-  background:#111a35;
-  border:1px solid #48588c;
-  box-shadow:0 15px 40px #000b;
-  color:#fff;
-  transition:.3s
-}
-
-.toast.show{
-  transform:translate(-50%,0)
+  color:#70769d;
+  padding:30px 20px 50px;
+  font-size:15px;
 }
 
 /* MOBILE */
 
-@media(max-width:560px){
+@media(max-width:700px){
 
-  .app{
-    padding:10px 10px 30px
+  header{
+    height:105px;
+    padding:14px 18px;
   }
 
-  .header{
+  .logo{
+    gap:10px;
+  }
+
+  .logo-icon{
+    width:68px;
     height:68px;
-    border-radius:20px
+    border-radius:22px;
+    font-size:34px;
   }
 
-  .brand-mark{
-    width:43px;
-    height:43px;
-    border-radius:14px
-  }
-
-  .brand-name{
-    font-size:19px
-  }
-
-  .brand-sub{
-    display:none
+  .logo-text{
+    font-size:31px;
   }
 
   .login{
-    padding:10px 12px;
-    font-size:13px
+    font-size:17px;
+    padding:17px 20px;
+    border-radius:22px;
   }
 
   .hero{
-    padding:44px 8px 28px
+    padding:75px 10px 50px;
+  }
+
+  .hero h1{
+    font-size:47px;
   }
 
   .hero p{
-    font-size:14px
+    font-size:19px;
   }
 
-  .feature{
-    grid-template-columns:1fr;
-    min-height:0;
-    text-align:center;
-    padding:24px 17px 28px;
-    gap:3px
+  .modes{
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:45px;
   }
 
-  .art{
-    height:180px
+  .mode{
+    min-height:190px;
+    border-radius:25px;
   }
 
-  .feature-copy{
-    text-align:center
+  .mode-icon{
+    font-size:38px;
+    margin-bottom:17px;
   }
 
-  .feature h2{
-    font-size:27px
-  }
-
-  .feature p{
-    font-size:14px
-  }
-
-  .open{
-    margin:18px auto 0
+  .mode-title{
+    font-size:20px;
   }
 
   .workspace{
-    padding:17px
+    padding:22px 14px;
+    border-radius:30px;
   }
 
-  .workspace h3{
-    font-size:20px
+  .workspace h2{
+    font-size:34px;
+  }
+
+  textarea{
+    min-height:260px;
+    font-size:21px;
+    padding:22px;
+    border-radius:25px;
+  }
+
+  .generate{
+    font-size:23px;
+    padding:22px;
+  }
+
+  .result-actions{
+    flex-direction:column;
+  }
+
+  .watermark-preview{
+    right:12px;
+    bottom:12px;
+    font-size:11px;
+    padding:6px 9px;
   }
 }
 </style>
@@ -626,617 +520,581 @@ textarea:focus{
 
 <body>
 
-<svg width="0" height="0" style="position:absolute">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#64c7ff"/>
-      <stop offset=".5" stop-color="#a56cff"/>
-      <stop offset="1" stop-color="#ef50dc"/>
-    </linearGradient>
-  </defs>
-</svg>
-
-<div class="app">
-
-<header class="header">
-
-  <div class="brand">
-
-    <div class="brand-mark">
-      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
-        <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2Z"/>
-        <path d="M19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/>
-      </svg>
-    </div>
-
-    <div>
-      <div class="brand-name">
-        Khayal <span>AI</span>
-      </div>
-
-      <div class="brand-sub">
-        استوديو الإبداع بالذكاء الاصطناعي
-      </div>
-    </div>
-
+<header>
+  <div class="logo">
+    <div class="logo-icon">✦</div>
+    <div class="logo-text">Khayal <span>AI</span></div>
   </div>
 
-  <button class="login" onclick="toast('تسجيل الدخول قريباً')">
-
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-      <circle cx="12" cy="8" r="3.5"/>
-      <path d="M5 21c.7-4.1 3.1-6.2 7-6.2s6.3 2.1 7 6.2"/>
-    </svg>
-
-    تسجيل الدخول
-
-  </button>
-
+  <button class="login">♙ تسجيل الدخول</button>
 </header>
 
-<section class="hero">
+<main class="container">
 
-  <div class="pill">
-    <span class="dot"></span>
-    منصة إبداعية مدعومة بالذكاء الاصطناعي
-  </div>
+  <section class="hero">
+    <h1>حوّل <span>خيالك</span> إلى واقع</h1>
+    <p>
+      أنشئ صوراً مذهلة من وصفك بالعربية أو الإنجليزية،
+      واستكشف عالم الإبداع مع Khayal AI.
+    </p>
+  </section>
 
-  <h1>
-    حوّل <span class="gradient">خيالك</span> إلى واقع
-  </h1>
+  <section class="modes">
 
-  <p>
-    أنشئ صوراً، مقاطع فيديو، وحرّك صورك بأسلوب سينمائي
-    من خلال تجربة واحدة أنيقة وسهلة.
-  </p>
-
-</section>
-
-<section class="features">
-
-  <!-- VIDEO -->
-  <article class="feature video">
-
-    <div class="art">
-
-      <div class="art-ring"></div>
-
-      <div class="art-icon">
-        <svg viewBox="0 0 64 64" fill="none" stroke-width="2">
-          <path d="M10 22h44v31H10z"/>
-          <path d="M10 22l5-11h34l5 11"/>
-          <path d="M26 31l14 7-14 7z"/>
-          <path d="M17 15h30"/>
-        </svg>
-      </div>
-
-      <span class="orb"></span>
-
+    <div class="mode" id="animateCard" onclick="selectMode('animate')">
+      <div class="mode-icon">✨</div>
+      <div class="mode-title">التحريك</div>
     </div>
 
-    <div class="feature-copy">
+    <div class="mode" id="videoCard" onclick="selectMode('video')">
+      <div class="mode-icon">🎬</div>
+      <div class="mode-title">الفيديو</div>
+    </div>
 
-      <span class="kicker">
-        AI VIDEO STUDIO
-      </span>
+    <div class="mode active" id="imageCard" onclick="selectMode('image')">
+      <div class="mode-icon">🏞️</div>
+      <div class="mode-title">الصور</div>
+    </div>
 
-      <h2>
-        توليد الفيديو
-      </h2>
+  </section>
 
-      <p>
-        حوّل أفكارك إلى مقاطع فيديو إبداعية بالذكاء الاصطناعي.
-      </p>
+  <section class="workspace">
 
-      <button
-        class="open"
-        onclick="openWorkspace('video')"
-        aria-label="توليد الفيديو"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 12h13M13 6l6 6-6 6"/>
-        </svg>
+    <h2 id="workspaceTitle">توليد الصور</h2>
+
+    <div class="workspace-sub" id="workspaceSub">
+      اكتب وصفاً بالعربية أو الإنجليزية وسنحوّله إلى صورة.
+    </div>
+
+    <div class="toggle">
+      <button class="active" id="arBtn" onclick="setLanguage('ar')">
+        العربية
       </button>
 
-    </div>
-
-  </article>
-
-  <!-- IMAGE -->
-  <article class="feature image">
-
-    <div class="art">
-
-      <div class="art-ring"></div>
-
-      <div class="art-icon">
-        <svg viewBox="0 0 64 64" fill="none" stroke-width="2">
-          <rect x="10" y="12" width="44" height="40" rx="5"/>
-          <circle cx="24" cy="25" r="4"/>
-          <path d="M14 45l13-13 8 8 6-6 9 11"/>
-        </svg>
-      </div>
-
-      <span class="orb"></span>
-
-    </div>
-
-    <div class="feature-copy">
-
-      <span class="kicker">
-        AI IMAGE STUDIO
-      </span>
-
-      <h2>
-        توليد الصور
-      </h2>
-
-      <p>
-        أنشئ صوراً مذهلة من وصفك وأفكارك الخاصة بجودة عالية.
-      </p>
-
-      <button
-        class="open"
-        onclick="openWorkspace('image')"
-        aria-label="توليد الصور"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 12h13M13 6l6 6-6 6"/>
-        </svg>
+      <button id="enBtn" onclick="setLanguage('en')">
+        English
       </button>
-
     </div>
 
-  </article>
+    <div class="prompt-wrap">
+      <textarea
+        id="prompt"
+        maxlength="1000"
+        placeholder="اكتب فكرتك هنا... مثال: قطة بيضاء تجلس تحت المطر في مدينة مستقبلية ليلاً"
+      ></textarea>
 
-  <!-- MOTION -->
-  <article class="feature motion">
-
-    <div class="art">
-
-      <div class="art-ring"></div>
-
-      <div class="art-icon">
-        <svg viewBox="0 0 64 64" fill="none" stroke-width="2">
-          <rect x="9" y="13" width="38" height="38" rx="5"/>
-          <circle cx="22" cy="26" r="4"/>
-          <path d="M13 44l11-11 7 7 7-6 7 8"/>
-          <circle cx="49" cy="46" r="10"/>
-          <path d="M47 41l5 5-5 5"/>
-        </svg>
-      </div>
-
-      <span class="orb"></span>
-
+      <div class="counter" id="counter">0 / 1000</div>
     </div>
 
-    <div class="feature-copy">
-
-      <span class="kicker">
-        AI MOTION STUDIO
-      </span>
-
-      <h2>
-        تحريك الصور
-      </h2>
-
-      <p>
-        أضف الحركة والحياة إلى صورك بطريقة واقعية وسلسة.
-      </p>
-
-      <button
-        class="open"
-        onclick="openWorkspace('motion')"
-        aria-label="تحريك الصور"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 12h13M13 6l6 6-6 6"/>
-        </svg>
-      </button>
-
-    </div>
-
-  </article>
-
-</section>
-
-<section id="workspace" class="workspace hidden">
-
-  <h3 id="wtitle">
-    توليد الصور
-  </h3>
-
-  <p id="wsub">
-    اكتب وصفاً وسنحوّله إلى صورة.
-  </p>
-
-  <div class="mode">
-
-    <button
-      id="imageMode"
-      class="active"
-      onclick="setWorkspaceMode('image')"
-    >
-      توليد الصور
+    <button class="generate" id="generateBtn" onclick="generate()">
+      إنشاء الصورة
     </button>
 
-    <button
-      id="videoMode"
-      onclick="setWorkspaceMode('video')"
-    >
-      توليد الفيديو
-    </button>
+    <div class="result" id="result"></div>
 
-  </div>
+  </section>
 
-  <div class="label">
-    <span>وصف فكرتك</span>
-    <small id="counter">0 / 1000</small>
-  </div>
+</main>
 
-  <textarea
-    id="prompt"
-    maxlength="1000"
-    placeholder="مثال: مدينة مستقبلية ليلاً، أضواء نيون، مطر خفيف، لقطة سينمائية واقعية..."
-  ></textarea>
+<footer>
+  © 2026 Khayal AI — الإبداع يبدأ من خيالك
+</footer>
 
-  <button
-    class="generate"
-    id="generateBtn"
-    onclick="generate()"
-  >
-    إنشاء الصورة
-  </button>
-
-  <div id="result" class="result"></div>
-
-  <div class="watermark-note">
-    ✦ الصور المنشأة عبر Khayal AI تحمل علامة مائية صغيرة لحماية المحتوى
-  </div>
-
-</section>
-
-<div class="footer">
-  Khayal AI © 2026 — الإبداع يبدأ من خيالك
-</div>
-
-</div>
-
-<div id="toast" class="toast"></div>
+<div class="toast" id="toast"></div>
 
 <script>
+const API_URL =
+  "https://khayal-ai-website.mohhhaa57.workers.dev/api/generate";
 
-const promptBox =
-  document.getElementById('prompt');
+const promptBox = document.getElementById("prompt");
+const counter = document.getElementById("counter");
+const result = document.getElementById("result");
+const generateBtn = document.getElementById("generateBtn");
 
-const counter =
-  document.getElementById('counter');
+let currentMode = "image";
+let currentLanguage = "ar";
 
-const result =
-  document.getElementById('result');
+promptBox.addEventListener("input", () => {
+  counter.textContent = promptBox.value.length + " / 1000";
+});
 
-const generateBtn =
-  document.getElementById('generateBtn');
+function toast(message){
+  const t = document.getElementById("toast");
 
-let currentMode = 'image';
+  t.textContent = message;
+  t.classList.add("show");
 
-let lastWatermarkedImage = null;
+  clearTimeout(window.toastTimer);
 
-
-/* ================================
-   عداد الأحرف
-================================ */
-
-promptBox.addEventListener(
-  'input',
-  () => {
-    counter.textContent =
-      promptBox.value.length + ' / 1000';
-  }
-);
-
-
-/* ================================
-   Toast
-================================ */
-
-function toast(msg){
-
-  const t =
-    document.getElementById('toast');
-
-  t.textContent = msg;
-
-  t.classList.add('show');
-
-  clearTimeout(window.tt);
-
-  window.tt =
-    setTimeout(
-      () => t.classList.remove('show'),
-      1800
-    );
+  window.toastTimer = setTimeout(() => {
+    t.classList.remove("show");
+  }, 2200);
 }
 
-
-/* ================================
-   فتح مساحة العمل
-================================ */
-
-function openWorkspace(mode){
-
-  document
-    .getElementById('workspace')
-    .classList.remove('hidden');
-
-  setWorkspaceMode(mode);
-
-  document
-    .getElementById('workspace')
-    .scrollIntoView({
-      behavior:'smooth',
-      block:'start'
-    });
-}
-
-
-/* ================================
-   تغيير الوضع
-================================ */
-
-function setWorkspaceMode(mode){
+function selectMode(mode){
 
   currentMode = mode;
 
-  const title =
-    document.getElementById('wtitle');
+  document.getElementById("imageCard")
+    .classList.toggle("active", mode === "image");
 
-  const sub =
-    document.getElementById('wsub');
+  document.getElementById("videoCard")
+    .classList.toggle("active", mode === "video");
 
-  const imageMode =
-    document.getElementById('imageMode');
+  document.getElementById("animateCard")
+    .classList.toggle("active", mode === "animate");
 
-  const videoMode =
-    document.getElementById('videoMode');
+  const title = document.getElementById("workspaceTitle");
+  const sub = document.getElementById("workspaceSub");
 
-  imageMode.classList.toggle(
-    'active',
-    mode === 'image'
-  );
+  if(mode === "image"){
 
-  videoMode.classList.toggle(
-    'active',
-    mode === 'video'
-  );
-
-  if(mode === 'image'){
-
-    title.textContent =
-      'توليد الصور';
+    title.textContent = "توليد الصور";
 
     sub.textContent =
-      'اكتب وصفاً بالعربية أو الإنجليزية وسنحوّله إلى صورة.';
+      "اكتب وصفاً بالعربية أو الإنجليزية وسنحوّله إلى صورة.";
 
-    generateBtn.innerHTML =
-      '<span>✦</span> إنشاء الصورة <span>→</span>';
+    generateBtn.textContent = "إنشاء الصورة";
 
+  }else if(mode === "video"){
+
+    title.textContent = "توليد الفيديو";
+
+    sub.textContent =
+      "واجهة الفيديو جاهزة، وسيتم ربط محرك الفيديو في المرحلة القادمة.";
+
+    generateBtn.textContent = "إنشاء الفيديو";
+
+  }else{
+
+    title.textContent = "تحريك الصور";
+
+    sub.textContent =
+      "سيتم إضافة رفع الصورة وتحريكها باستخدام محرك الفيديو.";
+
+    generateBtn.textContent = "تحريك الصورة";
   }
-  else if(mode === 'video'){
 
-    title.textContent =
-      'توليد الفيديو';
+  document.querySelector(".workspace")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+}
 
-    sub.textContent =
-      'محرك الفيديو سيتم ربطه لاحقاً مع نظام Khayal AI.';
+function setLanguage(lang){
 
-    generateBtn.innerHTML =
-      '<span>✦</span> إنشاء الفيديو <span>→</span>';
+  currentLanguage = lang;
 
-    toast(
-      'توليد الفيديو سيتم تفعيله لاحقاً'
-    );
+  document.getElementById("arBtn")
+    .classList.toggle("active", lang === "ar");
 
-  }
-  else{
+  document.getElementById("enBtn")
+    .classList.toggle("active", lang === "en");
 
-    title.textContent =
-      'تحريك الصور';
+  if(lang === "ar"){
 
-    sub.textContent =
-      'ميزة تحريك الصور سيتم ربطها لاحقاً.';
+    promptBox.placeholder =
+      "اكتب فكرتك هنا... مثال: قطة بيضاء تجلس تحت المطر في مدينة مستقبلية ليلاً";
 
-    generateBtn.innerHTML =
-      '<span>✦</span> تحريك الصورة <span>→</span>';
+  }else{
 
-    toast(
-      'تحريك الصور سيتم تفعيله لاحقاً'
-    );
+    promptBox.placeholder =
+      "Describe your idea... Example: A white cat sitting under the rain in a futuristic city at night";
   }
 }
 
+async function generate(){
 
-/* ================================
-   تحويل الصورة إلى عنصر Image
-================================ */
+  if(currentMode !== "image"){
 
-function loadImage(src){
+    toast(
+      currentMode === "video"
+      ? "توليد الفيديو سيتم تفعيله قريباً"
+      : "تحريك الصور سيتم تفعيله قريباً"
+    );
 
-  return new Promise(
-    (resolve,reject)=>{
+    return;
+  }
 
-      const img =
-        new Image();
+  const prompt = promptBox.value.trim();
 
-      img.onload =
-        () => resolve(img);
+  if(!prompt){
 
-      img.onerror =
-        reject;
+    toast("اكتب وصفاً لفكرتك أولاً");
 
-      img.src = src;
+    promptBox.focus();
+
+    return;
+  }
+
+  generateBtn.disabled = true;
+
+  generateBtn.textContent = "جاري إنشاء الصورة...";
+
+  result.classList.add("show");
+
+  result.innerHTML = `
+    <div class="loading">
+      <span class="spinner"></span>
+      <div style="margin-top:15px">
+        جاري تحويل خيالك إلى صورة...
+      </div>
+    </div>
+  `;
+
+  try{
+
+    const response = await fetch(API_URL,{
+
+      method:"POST",
+
+      headers:{
+        "Content-Type":"application/json"
+      },
+
+      body:JSON.stringify({
+        prompt:prompt
+      })
+
+    });
+
+    const data = await response.json();
+
+    if(!response.ok){
+
+      throw new Error(
+        data.error || "حدث خطأ أثناء إنشاء الصورة"
+      );
     }
-  );
+
+    if(!data.image){
+
+      throw new Error(
+        "لم يتم استلام الصورة من الخادم"
+      );
+    }
+
+    /*
+      العلامة المائية تُدمج داخل الصورة
+      نفسها قبل عرضها وتنزيلها.
+    */
+
+    const finalImage =
+      await addWatermark(data.image);
+
+    result.innerHTML = `
+
+      <div class="result-image-wrap">
+
+        <img
+          id="generatedImage"
+          src="${finalImage}"
+          alt="الصورة التي تم إنشاؤها بواسطة Khayal AI"
+        >
+
+        <div class="watermark-preview">
+          <span class="watermark-star">✦</span>
+          <span>Khayal AI</span>
+        </div>
+
+      </div>
+
+      <div class="result-actions">
+
+        <a
+          class="primary"
+          href="${finalImage}"
+          download="khayal-ai.png"
+        >
+          حفظ الصورة
+        </a>
+
+        <button
+          class="secondary"
+          onclick="downloadImage()"
+        >
+          تنزيل
+        </button>
+
+      </div>
+    `;
+
+    toast("تم إنشاء الصورة بنجاح ✨");
+
+    result.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+  }catch(error){
+
+    result.innerHTML = `
+      <div class="loading">
+        تعذر إنشاء الصورة
+        <br>
+        <small>${escapeHtml(error.message)}</small>
+      </div>
+    `;
+
+    toast("تعذر إنشاء الصورة");
+
+  }finally{
+
+    generateBtn.disabled = false;
+
+    generateBtn.textContent = "إنشاء الصورة";
+  }
 }
 
 
-/* ================================
-   إضافة العلامة المائية
-   داخل الصورة نفسها
-================================ */
+/*
+  إضافة العلامة المائية إلى الصورة فعلياً
+*/
 
-async function addWatermark(imageSrc){
+function addWatermark(imageSrc){
 
-  const img =
-    await loadImage(imageSrc);
+  return new Promise((resolve,reject)=>{
 
-  const canvas =
-    document.createElement('canvas');
+    const img = new Image();
 
-  canvas.width =
-    img.naturalWidth || img.width;
+    img.onload = () => {
 
-  canvas.height =
-    img.naturalHeight || img.height;
+      try{
 
-  const ctx =
-    canvas.getContext('2d');
+        const canvas =
+          document.createElement("canvas");
 
-  ctx.drawImage(
-    img,
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
 
-  const scale =
-    Math.max(
-      canvas.width / 1024,
-      canvas.height / 1024,
-      1
-    );
+        const ctx =
+          canvas.getContext("2d");
 
-  const padding =
-    Math.round(20 * scale);
+        ctx.drawImage(
+          img,
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
 
-  const fontSize =
-    Math.round(24 * scale);
+        const scale =
+          Math.max(canvas.width,canvas.height) / 1024;
 
-  const iconSize =
-    Math.round(28 * scale);
+        const padding = Math.round(24 * scale);
 
-  const text =
-    'Khayal AI';
+        const fontSize =
+          Math.max(18,Math.round(22 * scale));
 
-  ctx.font =
-    `700 ${fontSize}px Arial, sans-serif`;
+        const text =
+          "✦  Khayal AI";
 
-  const textWidth =
-    ctx.measureText(text).width;
+        ctx.font =
+          "600 " + fontSize + "px Arial";
 
-  const boxWidth =
-    padding * 2 +
-    iconSize +
-    8 +
-    textWidth;
+        const textWidth =
+          ctx.measureText(text).width;
 
-  const boxHeight =
-    Math.round(48 * scale);
+        const boxWidth =
+          textWidth + padding * 1.6;
 
-  const x =
-    canvas.width -
-    boxWidth -
-    padding;
+        const boxHeight =
+          fontSize + padding;
 
-  const y =
-    canvas.height -
-    boxHeight -
-    padding;
+        const x =
+          canvas.width - boxWidth - padding;
 
-  /*
-    خلفية شفافة وأنيقة
-  */
+        const y =
+          canvas.height - boxHeight - padding;
 
-  const gradient =
-    ctx.createLinearGradient(
-      x,
-      y,
-      x + boxWidth,
-      y + boxHeight
-    );
+        /*
+          خلفية شفافة أنيقة
+        */
 
-  gradient.addColorStop(
-    0,
-    'rgba(7,10,28,0.58)'
-  );
+        ctx.fillStyle =
+          "rgba(5,7,20,0.58)";
 
-  gradient.addColorStop(
-    1,
-    'rgba(80,35,130,0.52)'
-  );
+        roundRect(
+          ctx,
+          x,
+          y,
+          boxWidth,
+          boxHeight,
+          Math.round(12 * scale)
+        );
 
-  ctx.fillStyle =
-    gradient;
+        ctx.fill();
+
+        /*
+          إطار خفيف
+        */
+
+        ctx.strokeStyle =
+          "rgba(255,255,255,0.25)";
+
+        ctx.lineWidth =
+          Math.max(1,scale);
+
+        ctx.stroke();
+
+        /*
+          النص
+        */
+
+        ctx.fillStyle =
+          "rgba(255,255,255,0.78)";
+
+        ctx.textAlign = "center";
+
+        ctx.textBaseline = "middle";
+
+        ctx.fillText(
+          text,
+          x + boxWidth / 2,
+          y + boxHeight / 2
+        );
+
+        resolve(
+          canvas.toDataURL(
+            "image/png",
+            1
+          )
+        );
+
+      }catch(error){
+
+        reject(error);
+
+      }
+
+    };
+
+    img.onerror = () => {
+
+      reject(
+        new Error("تعذر تجهيز العلامة المائية")
+      );
+
+    };
+
+    img.src = imageSrc;
+  });
+}
+
+
+/*
+  رسم مستطيل بزوايا ناعمة
+*/
+
+function roundRect(
+  ctx,
+  x,
+  y,
+  width,
+  height,
+  radius
+){
 
   ctx.beginPath();
 
-  ctx.roundRect(
+  ctx.moveTo(x + radius,y);
+
+  ctx.lineTo(x + width - radius,y);
+
+  ctx.quadraticCurveTo(
+    x + width,
+    y,
+    x + width,
+    y + radius
+  );
+
+  ctx.lineTo(
+    x + width,
+    y + height - radius
+  );
+
+  ctx.quadraticCurveTo(
+    x + width,
+    y + height,
+    x + width - radius,
+    y + height
+  );
+
+  ctx.lineTo(
+    x + radius,
+    y + height
+  );
+
+  ctx.quadraticCurveTo(
+    x,
+    y + height,
+    x,
+    y + height - radius
+  );
+
+  ctx.lineTo(
+    x,
+    y + radius
+  );
+
+  ctx.quadraticCurveTo(
     x,
     y,
-    boxWidth,
-    boxHeight,
-    Math.round(15 * scale)
+    x + radius,
+    y
   );
 
-  ctx.fill();
+  ctx.closePath();
+}
 
-  /*
-    حد خفيف
-  */
 
-  ctx.strokeStyle =
-    'rgba(255,255,255,0.18)';
+function downloadImage(){
 
-  ctx.lineWidth =
-    Math.max(1, scale);
+  const img =
+    document.getElementById("generatedImage");
 
-  ctx.stroke();
+  if(!img){
 
-  /*
-    النجمة
-  */
+    toast("لا توجد صورة لتنزيلها");
 
-  ctx.fillStyle =
-    'rgba(255,255,255,0.92)';
+    return;
+  }
 
-  ctx.font =
-    `${iconSize}px Arial`;
+  const link =
+    document.createElement("a");
 
-  ctx.textAlign =
-    'center';
+  link.href = img.src;
 
-  ctx.textBaseline =
-    'middle';
+  link.download =
+    "khayal-ai-watermarked.png";
 
-  ctx.fillText(
-    '✦',
-    x + padding + iconSize / 2,
-    y + boxHeight / 2
+  document.body.appendChild(link);
+
+  link.click();
+
+  link.remove();
+}
+
+
+function escapeHtml(text){
+
+  return String(text).replace(
+    /[&<>"']/g,
+    function(match){
+
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[match];
+
+    }
   );
+}
+</script>
 
-  /*
-    اسم Khayal AI
-  */
-
-  ctx.font =
-    `700 ${fontSize}px Arial, sans-serif`;
-
-  ctx.textAlign =
-    'left';
-
-  ctx.fillStyle =
-    'rgba(255,255,255,0.88)';
-
-  ctx.fillText(
- 
+</body>
+</html>
