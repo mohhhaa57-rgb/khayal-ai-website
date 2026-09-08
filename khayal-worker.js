@@ -14,6 +14,22 @@ function json(data, status = 200) {
   });
 }
 
+async function streamToBase64(stream) {
+  const buffer = await new Response(stream).arrayBuffer();
+  const bytes = new Uint8Array(buffer);
+
+  let binary = "";
+  const chunkSize = 0x8000;
+
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode(
+      ...bytes.subarray(i, i + chunkSize)
+    );
+  }
+
+  return btoa(binary);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -45,12 +61,6 @@ export default {
       }, 405);
     }
 
-    if (!env.OPENAI_API_KEY) {
-      return json({
-        error: "OPENAI_API_KEY غير موجود في Cloudflare"
-      }, 500);
-    }
-
     try {
       const body = await request.json();
       const prompt = String(body.prompt || "").trim();
@@ -61,47 +71,29 @@ export default {
         }, 400);
       }
 
-      const response = await fetch(
-        "https://api.openai.com/v1/images/generations",
+      const result = await env.AI.run(
+        "@cf/stabilityai/stable-diffusion-xl-base-1.0",
         {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            model: "gpt-image-2",
-            prompt: prompt,
-            size: "1024x1024",
-            quality: "medium"
-          })
+          prompt,
+          negative_prompt:
+            "blurry, low quality, distorted, deformed, ugly, text, watermark",
+          width: 1024,
+          height: 1024,
+          num_steps: 20,
+          guidance: 7.5
         }
       );
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        return json({
-          error: result?.error?.message || "فشل توليد الصورة"
-        }, response.status);
-      }
-
-      const image = result?.data?.[0]?.b64_json;
-
-      if (!image) {
-        return json({
-          error: "لم يتم استلام الصورة من OpenAI"
-        }, 500);
-      }
+      const imageBase64 = await streamToBase64(result);
 
       return json({
         success: true,
-        image: `data:image/png;base64,${image}`
+        image: `data:image/png;base64,${imageBase64}`
       });
 
     } catch (error) {
       return json({
-        error: "حدث خطأ في الخادم",
+        error: "حدث خطأ أثناء إنشاء الصورة",
         details: error?.message || "Unknown error"
       }, 500);
     }
