@@ -4,184 +4,534 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Khayal AI</title>
+  <title>Khayal AI | اصنع من خيالك واقعًا</title>
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #030712;
+      --card: rgba(12, 18, 35, 0.78);
+      --border: rgba(91, 92, 255, 0.35);
+      --purple: #8b5cf6;
+      --blue: #2563eb;
+      --cyan: #22d3ee;
+      --text: #ffffff;
+      --muted: #9ca3af;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #08090d;
-      color: white;
+      font-family: Arial, Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at 50% 0%, #17104a 0%, transparent 35%),
+        radial-gradient(circle at 100% 40%, #071b3d 0%, transparent 30%),
+        var(--bg);
+      color: var(--text);
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
+    /* الخلفية */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(139,92,246,.35) 1px, transparent 1px);
+      background-size: 70px 70px;
+      opacity: .12;
+    }
+
+    /* الهيدر */
     header {
-      padding: 18px 20px;
-      border-bottom: 1px solid #22242d;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 75px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(3,7,18,.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(100,100,255,.18);
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: bold;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      white-space: nowrap;
     }
 
     .logo span {
+      background: linear-gradient(90deg, #8b5cf6, #22d3ee);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo-icon {
       color: #8b5cf6;
+      margin-left: 5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-size: 15px;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: white;
     }
 
     .login {
-      background: #171923;
-      border: 1px solid #30323d;
+      border: 1px solid rgba(139,92,246,.5);
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
       color: white;
-      padding: 9px 16px;
-      border-radius: 10px;
+      padding: 11px 19px;
+      border-radius: 14px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(124,58,237,.3);
     }
 
+    /* الهيرو */
     .hero {
+      position: relative;
       text-align: center;
-      padding: 55px 20px 30px;
+      padding: 100px 20px 70px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .glow {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: #6d28d9;
+      filter: blur(150px);
+      opacity: .18;
+      left: 50%;
+      top: 50px;
+      transform: translateX(-50%);
+      pointer-events: none;
     }
 
     .hero h1 {
-      font-size: 38px;
-      margin-bottom: 15px;
+      position: relative;
+      font-size: clamp(42px, 9vw, 75px);
+      line-height: 1.2;
+      font-weight: 900;
+      margin-bottom: 25px;
     }
 
     .hero h1 span {
-      color: #8b5cf6;
+      background: linear-gradient(90deg, #8b5cf6, #c084fc, #22d3ee);
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
     .hero p {
-      color: #a5a7b3;
-      font-size: 17px;
+      color: #aeb5c7;
+      font-size: 19px;
+      line-height: 2;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 35px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      border-radius: 50px;
+      padding: 16px 35px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .primary-btn {
+      border: none;
+      color: white;
+      background: linear-gradient(90deg, #7c3aed, #4f46e5);
+      box-shadow: 0 0 35px rgba(124,58,237,.4);
+    }
+
+    .secondary-btn {
+      color: white;
+      background: rgba(10,15,30,.7);
+      border: 1px solid #303d78;
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    /* البطاقات */
+    .features {
+      max-width: 1150px;
+      margin: 20px auto 80px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      position: relative;
+      background: linear-gradient(
+        145deg,
+        rgba(18,25,50,.85),
+        rgba(5,10,23,.9)
+      );
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      overflow: hidden;
+      transition: .3s;
+    }
+
+    .feature:hover {
+      transform: translateY(-7px);
+      border-color: #8b5cf6;
+      box-shadow: 0 15px 50px rgba(79,70,229,.18);
+    }
+
+    .feature-icon {
+      width: 65px;
+      height: 65px;
+      margin: auto auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 29px;
+      background: rgba(124,58,237,.16);
+      border: 1px solid rgba(124,58,237,.3);
+      box-shadow: 0 0 25px rgba(124,58,237,.18);
+    }
+
+    .feature h3 {
+      font-size: 19px;
+      margin-bottom: 12px;
+    }
+
+    .feature p {
+      color: #9299ab;
+      font-size: 14px;
       line-height: 1.8;
     }
 
-    .tools {
-      max-width: 950px;
-      margin: 25px auto;
-      padding: 0 15px;
+    /* أداة الذكاء الاصطناعي */
+    .creator {
+      max-width: 1000px;
+      margin: 0 auto 90px;
+      padding: 0 20px;
+    }
+
+    .creator-box {
+      background:
+        linear-gradient(145deg,
+        rgba(20,15,55,.85),
+        rgba(6,12,28,.92));
+      border: 1px solid rgba(100,80,255,.4);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.3);
+    }
+
+    .creator-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .creator-title h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .creator-title p {
+      color: var(--muted);
     }
 
     .tabs {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3,1fr);
       gap: 10px;
       margin-bottom: 20px;
     }
 
     .tab {
-      background: #11131a;
-      border: 1px solid #292c37;
-      color: #ddd;
-      padding: 16px 8px;
-      border-radius: 14px;
+      padding: 15px 8px;
+      border-radius: 13px;
+      border: 1px solid #29345b;
+      background: #080e20;
+      color: #cbd5e1;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 14px;
+      transition: .3s;
     }
 
     .tab.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
       color: white;
+      border-color: #8b5cf6;
+      background: linear-gradient(135deg,#6d28d9,#4338ca);
+      box-shadow: 0 0 25px rgba(109,40,217,.25);
     }
 
-    .panel {
-      background: #11131a;
-      border: 1px solid #292c37;
-      border-radius: 18px;
-      padding: 20px;
+    .tool {
+      display: none;
     }
 
-    .panel h2 {
-      margin-bottom: 8px;
-    }
-
-    .panel p {
-      color: #999daa;
-      margin-bottom: 20px;
+    .tool.active {
+      display: block;
     }
 
     textarea {
       width: 100%;
-      min-height: 130px;
+      min-height: 145px;
       resize: vertical;
-      background: #08090d;
+      border-radius: 15px;
+      padding: 18px;
       color: white;
-      border: 1px solid #30333e;
-      border-radius: 12px;
-      padding: 15px;
-      font-size: 16px;
+      background: #050914;
+      border: 1px solid #273252;
       outline: none;
+      font-size: 16px;
+      font-family: inherit;
+      margin-bottom: 15px;
     }
 
     textarea:focus {
       border-color: #8b5cf6;
-    }
-
-    .upload {
-      border: 2px dashed #353846;
-      border-radius: 14px;
-      padding: 35px 15px;
-      text-align: center;
-      color: #999daa;
-      margin-bottom: 15px;
-    }
-
-    input[type="file"] {
-      margin-top: 15px;
+      box-shadow: 0 0 20px rgba(139,92,246,.12);
     }
 
     .generate {
       width: 100%;
-      margin-top: 15px;
-      padding: 15px;
       border: none;
-      border-radius: 12px;
-      background: #8b5cf6;
+      padding: 16px;
+      border-radius: 14px;
       color: white;
-      font-size: 17px;
       font-weight: bold;
+      font-size: 16px;
       cursor: pointer;
+      background: linear-gradient(90deg,#7c3aed,#4f46e5);
+      box-shadow: 0 0 30px rgba(124,58,237,.25);
     }
 
-    .generate:hover {
-      opacity: 0.9;
+    .upload {
+      border: 2px dashed #34416d;
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      color: #9299ab;
+      margin-bottom: 15px;
+    }
+
+    .upload input {
+      margin-top: 15px;
+      max-width: 100%;
     }
 
     .result {
       display: none;
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: 12px;
-      background: #08090d;
-      border: 1px solid #292c37;
+      margin-top: 15px;
+      padding: 18px;
       text-align: center;
-      color: #aaa;
+      color: #b8c0d3;
+      border-radius: 14px;
+      background: #050914;
+      border: 1px solid #273252;
     }
 
+    /* قسم بلا حدود */
+    .about {
+      max-width: 1050px;
+      margin: 0 auto 90px;
+      padding: 0 20px;
+    }
+
+    .about-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+      padding: 40px;
+      border-radius: 25px;
+      border: 1px solid rgba(100,80,255,.35);
+      background:
+        radial-gradient(circle at left, rgba(76,29,149,.25), transparent 45%),
+        rgba(7,13,30,.85);
+    }
+
+    .visual {
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 110px;
+      filter: drop-shadow(0 0 35px #6d28d9);
+    }
+
+    .about h2 {
+      font-size: 35px;
+      margin-bottom: 18px;
+    }
+
+    .about h2 span {
+      color: #a78bfa;
+    }
+
+    .about p {
+      color: #aab1c2;
+      line-height: 2;
+      font-size: 16px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 80px 20px;
+      background:
+        radial-gradient(circle, rgba(109,40,217,.22), transparent 55%);
+    }
+
+    .cta h2 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      color: #969fb2;
+      margin-bottom: 25px;
+    }
+
+    /* الفوتر */
     footer {
+      border-top: 1px solid #17213c;
+      padding: 35px 20px;
       text-align: center;
-      padding: 40px 20px;
-      color: #666975;
-      font-size: 14px;
+      color: #687187;
     }
 
-    @media (max-width: 600px) {
+    footer .footer-logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    footer .footer-logo span {
+      color: #8b5cf6;
+    }
+
+    /* الهاتف */
+    @media (max-width: 800px) {
+
+      header {
+        height: 68px;
+        padding: 0 18px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .hero {
+        padding: 75px 20px 50px;
+      }
+
       .hero h1 {
-        font-size: 30px;
+        font-size: 43px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .features {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .feature {
+        padding: 22px 12px;
+      }
+
+      .creator-box {
+        padding: 18px;
       }
 
       .tabs {
         grid-template-columns: 1fr;
+      }
+
+      .about-box {
+        grid-template-columns: 1fr;
+        padding: 25px;
+      }
+
+      .visual {
+        min-height: 170px;
+        font-size: 80px;
+      }
+
+      .about h2 {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 450px) {
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .login {
+        padding: 9px 13px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        width: 100%;
       }
     }
   </style>
@@ -189,161 +539,326 @@
 
 <body>
 
-  <header>
-    <div class="logo">Khayal <span>AI</span></div>
-    <button class="login">تسجيل الدخول</button>
-  </header>
+<header>
 
-  <section class="hero">
-    <h1>حوّل <span>خيالك</span> إلى واقع</h1>
+  <div class="logo">
+    <span class="logo-icon">✦</span>
+    Khayal <span>AI</span>
+  </div>
+
+  <nav>
+    <a href="#home">الرئيسية</a>
+    <a href="#features">المميزات</a>
+    <a href="#creator">اصنع الآن</a>
+    <a href="#about">عن Khayal</a>
+  </nav>
+
+  <button class="login">
+    تسجيل الدخول 👤
+  </button>
+
+</header>
+
+
+<section class="hero" id="home">
+
+  <div class="glow"></div>
+
+  <h1>
+    حوّل <span>خيالك</span> إلى واقع
+  </h1>
+
+  <p>
+    أنشئ صورًا مذهلة، ومقاطع فيديو، وحرك صورك
+    باستخدام قوة الذكاء الاصطناعي.
+  </p>
+
+  <div class="hero-buttons">
+
+    <button class="primary-btn"
+            onclick="document.getElementById('creator').scrollIntoView()">
+      ابدأ الآن ←
+    </button>
+
+    <button class="secondary-btn"
+            onclick="document.getElementById('features').scrollIntoView()">
+      ◉ شاهد المميزات
+    </button>
+
+  </div>
+
+</section>
+
+
+<section class="features" id="features">
+
+  <div class="feature">
+
+    <div class="feature-icon">🎬</div>
+
+    <h3>توليد الفيديو</h3>
+
     <p>
-      أنشئ صورًا ومقاطع فيديو وحرك صورك باستخدام الذكاء الاصطناعي.
+      حوّل أفكارك إلى مقاطع فيديو
+      إبداعية بالذكاء الاصطناعي.
     </p>
-  </section>
 
-  <main class="tools">
+  </div>
+
+
+  <div class="feature">
+
+    <div class="feature-icon">🖼️</div>
+
+    <h3>توليد الصور</h3>
+
+    <p>
+      أنشئ صورًا مذهلة من وصفك
+      وبأفكارك الخاصة.
+    </p>
+
+  </div>
+
+
+  <div class="feature">
+
+    <div class="feature-icon">✨</div>
+
+    <h3>تحريك الصور</h3>
+
+    <p>
+      أضف الحركة والحياة إلى صورك
+      بطريقة واقعية.
+    </p>
+
+  </div>
+
+
+  <div class="feature">
+
+    <div class="feature-icon">⚡</div>
+
+    <h3>نتائج احترافية</h3>
+
+    <p>
+      أدوات سهلة وواجهة سريعة
+      لصناعة محتوى إبداعي.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section class="creator" id="creator">
+
+  <div class="creator-box">
+
+    <div class="creator-title">
+
+      <h2>ابدأ الإبداع ✦</h2>
+
+      <p>
+        اختر الأداة التي تريد استخدامها
+      </p>
+
+    </div>
+
 
     <div class="tabs">
 
-      <button class="tab active" onclick="showTool('image', this)">
+      <button class="tab active"
+              onclick="openTool('image',this)">
         🖼️ توليد الصور
       </button>
 
-      <button class="tab" onclick="showTool('video', this)">
+      <button class="tab"
+              onclick="openTool('video',this)">
         🎬 توليد الفيديو
       </button>
 
-      <button class="tab" onclick="showTool('animate', this)">
+      <button class="tab"
+              onclick="openTool('animate',this)">
         ✨ تحريك الصور
       </button>
 
     </div>
 
-    <!-- توليد الصور -->
-    <section id="image" class="panel">
 
-      <h2>🖼️ توليد صورة</h2>
+    <!-- الصور -->
 
-      <p>
-        اكتب وصف الصورة التي تريد إنشاءها.
-      </p>
+    <div class="tool active" id="image">
 
       <textarea
         id="imagePrompt"
-        placeholder="مثال: مدينة مستقبلية ليلية، أضواء نيون، سينمائية، واقعية جدًا..."
-      ></textarea>
+        placeholder="اكتب وصف الصورة التي تريد إنشاءها...&#10;&#10;مثال: مدينة مستقبلية ليلية، أضواء نيون، أسلوب سينمائي واقعي">
+      </textarea>
 
-      <button class="generate" onclick="generate('image')">
-        ✨ إنشاء الصورة
+      <button class="generate"
+              onclick="generate('image')">
+        ✦ إنشاء الصورة
       </button>
 
-      <div id="imageResult" class="result">
-        🚧 سيتم ربط مولد الصور بالذكاء الاصطناعي هنا.
-      </div>
+      <div class="result" id="imageResult"></div>
 
-    </section>
+    </div>
 
 
-    <!-- توليد الفيديو -->
-    <section id="video" class="panel" style="display:none;">
+    <!-- الفيديو -->
 
-      <h2>🎬 توليد فيديو</h2>
-
-      <p>
-        اكتب وصف الفيديو الذي تريد إنشاءه.
-      </p>
+    <div class="tool" id="video">
 
       <textarea
         id="videoPrompt"
-        placeholder="مثال: سيارة رياضية تسير بسرعة في مدينة مستقبلية ليلًا..."
-      ></textarea>
+        placeholder="اكتب وصف الفيديو الذي تريد إنشاءه...&#10;&#10;مثال: سيارة رياضية تسير في مدينة مستقبلية ليلًا">
+      </textarea>
 
-      <button class="generate" onclick="generate('video')">
+      <button class="generate"
+              onclick="generate('video')">
         🎬 إنشاء الفيديو
       </button>
 
-      <div id="videoResult" class="result">
-        🚧 سيتم ربط مولد الفيديو بالذكاء الاصطناعي هنا.
-      </div>
+      <div class="result" id="videoResult"></div>
 
-    </section>
+    </div>
 
 
     <!-- تحريك الصور -->
-    <section id="animate" class="panel" style="display:none;">
 
-      <h2>✨ تحريك صورة</h2>
-
-      <p>
-        ارفع صورة واكتب الحركة التي تريدها.
-      </p>
+    <div class="tool" id="animate">
 
       <div class="upload">
 
         📤
+
         <br><br>
 
-        اختر الصورة التي تريد تحريكها
+        <strong>
+          ارفع الصورة التي تريد تحريكها
+        </strong>
 
         <br>
 
-        <input type="file" accept="image/*">
+        <input type="file"
+               accept="image/*">
 
       </div>
 
       <textarea
-        placeholder="مثال: اجعل الشخص يحرك رأسه والرياح تحرك الشعر..."
-      ></textarea>
+        placeholder="اكتب الحركة التي تريد إضافتها للصورة...&#10;&#10;مثال: حركة شعر خفيفة مع تحريك الكاميرا">
+      </textarea>
 
-      <button class="generate" onclick="generate('animate')">
+      <button class="generate"
+              onclick="generate('animate')">
         ✨ تحريك الصورة
       </button>
 
-      <div id="animateResult" class="result">
-        🚧 سيتم ربط محرك تحريك الصور هنا.
-      </div>
+      <div class="result" id="animateResult"></div>
 
-    </section>
+    </div>
 
-  </main>
+  </div>
+
+</section>
 
 
-  <footer>
+<section class="about" id="about">
+
+  <div class="about-box">
+
+    <div class="visual">
+      🖼️ ✦ 🎬
+    </div>
+
+    <div>
+
+      <h2>
+        ابدع <span>بلا حدود</span>
+      </h2>
+
+      <p>
+        سواء كنت صانع محتوى أو مصممًا أو مجرد شخص
+        يحب الإبداع، يمنحك Khayal AI الأدوات اللازمة
+        لتحويل أفكارك إلى صور ومقاطع فيديو مذهلة.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="cta">
+
+  <h2>
+    خيالك هو الحد الوحيد ✨
+  </h2>
+
+  <p>
+    ابدأ بصناعة محتواك الإبداعي اليوم.
+  </p>
+
+  <button class="primary-btn"
+          onclick="document.getElementById('creator').scrollIntoView()">
+    ابدأ الآن
+  </button>
+
+</section>
+
+
+<footer>
+
+  <div class="footer-logo">
+    ✦ Khayal <span>AI</span>
+  </div>
+
+  <p>
+    نصنع عالمًا من الخيال بالذكاء الاصطناعي.
+  </p>
+
+  <br>
+
+  <small>
     © 2026 Khayal AI — جميع الحقوق محفوظة
-  </footer>
+  </small>
+
+</footer>
 
 
-  <script>
+<script>
 
-    function showTool(tool, button) {
+  function openTool(toolName, button) {
 
-      document.getElementById("image").style.display = "none";
-      document.getElementById("video").style.display = "none";
-      document.getElementById("animate").style.display = "none";
+    document.querySelectorAll(".tool").forEach(function(tool) {
+      tool.classList.remove("active");
+    });
 
-      document.getElementById(tool).style.display = "block";
+    document.querySelectorAll(".tab").forEach(function(tab) {
+      tab.classList.remove("active");
+    });
 
-      document.querySelectorAll(".tab").forEach(function(tab) {
-        tab.classList.remove("active");
-      });
+    document.getElementById(toolName).classList.add("active");
 
-      button.classList.add("active");
-    }
+    button.classList.add("active");
+
+  }
 
 
-    function generate(type) {
+  function generate(type) {
 
-      let result = document.getElementById(type + "Result");
+    const result =
+      document.getElementById(type + "Result");
 
-      result.style.display = "block";
+    result.style.display = "block";
 
-      result.innerHTML =
-        "⏳ جاري تجهيز النظام...<br><br>" +
-        "سيتم ربط الذكاء الاصطناعي في الخطوة القادمة.";
+    result.innerHTML =
+      "⏳ جاري تجهيز أداة الذكاء الاصطناعي...<br><br>" +
+      "سيتم ربط محرك التوليد في المرحلة القادمة.";
 
-    }
+  }
 
-  </script>
+</script>
 
 </body>
 </html>
