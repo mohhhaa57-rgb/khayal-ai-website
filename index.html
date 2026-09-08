@@ -1,1031 +1,1017 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070816">
-<title>Khayal AI — خيال AI</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0
-}
-
-html{
-  scroll-behavior:smooth
-}
-
-body{
-  font-family:Arial,Tahoma,sans-serif;
-  background:
-    radial-gradient(circle at 20% 20%,rgba(75,55,255,.18),transparent 30%),
-    radial-gradient(circle at 80% 60%,rgba(0,180,255,.12),transparent 30%),
-    #050612;
-  color:#fff;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:.15;
-  background-image:
-    linear-gradient(rgba(100,100,255,.15) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(100,100,255,.15) 1px,transparent 1px);
-  background-size:45px 45px;
-}
-
-.container{
-  width:min(1100px,92%);
-  margin:auto;
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  padding:18px 0;
-  backdrop-filter:blur(18px);
-  background:rgba(5,6,18,.75);
-  border-bottom:1px solid rgba(130,90,255,.25);
-}
-
-.nav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-size:27px;
-  font-weight:900;
-}
-
-.logo-icon{
-  width:58px;
-  height:58px;
-  display:grid;
-  place-items:center;
-  border-radius:18px;
-  font-size:31px;
-  background:linear-gradient(135deg,#4630ff,#a23cff);
-  box-shadow:0 0 30px rgba(111,61,255,.55);
-}
-
-.logo span{
-  background:linear-gradient(90deg,#fff,#a874ff);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.login{
-  border:0;
-  color:white;
-  font-size:17px;
-  font-weight:800;
-  padding:16px 25px;
-  border-radius:18px;
-  background:linear-gradient(135deg,#5432ff,#9c35ff);
-  box-shadow:0 0 25px rgba(112,53,255,.4);
-}
-
-.hero{
-  text-align:center;
-  padding:75px 0 45px;
-}
-
-.badge{
-  display:inline-block;
-  border:1px solid rgba(140,100,255,.55);
-  border-radius:50px;
-  padding:12px 20px;
-  color:#c9baff;
-  margin-bottom:28px;
-  background:rgba(80,50,180,.08);
-}
-
-.badge:before{
-  content:"●";
-  color:#a14cff;
-  margin-left:9px;
-}
-
-h1{
-  font-size:clamp(42px,8vw,78px);
-  line-height:1.2;
-  margin-bottom:25px;
-}
-
-.gradient{
-  background:linear-gradient(90deg,#fff,#b45aff,#fff);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.hero p{
-  color:#aeb0ca;
-  font-size:21px;
-  line-height:1.9;
-  max-width:800px;
-  margin:auto;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-  padding:30px 0 70px;
-}
-
-.card{
-  position:relative;
-  min-height:480px;
-  padding:35px 25px;
-  border-radius:40px;
-  border:1px solid rgba(100,110,255,.5);
-  background:
-    radial-gradient(circle at 20% 80%,rgba(45,80,255,.22),transparent 35%),
-    rgba(12,14,40,.82);
-  box-shadow:0 0 35px rgba(40,45,150,.15);
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:space-between;
-  transition:.3s;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 45px rgba(75,70,255,.35);
-}
-
-.card-icon{
-  width:180px;
-  height:180px;
-  border-radius:35px;
-  border:2px solid #705aff;
-  display:grid;
-  place-items:center;
-  font-size:75px;
-  background:rgba(45,40,130,.2);
-  box-shadow:
-    0 0 0 20px rgba(80,60,255,.05),
-    0 0 0 40px rgba(80,60,255,.03),
-    0 0 35px rgba(75,70,255,.35);
-  margin-top:25px;
-}
-
-.card:nth-child(2){
-  border-color:#268eff;
-}
-
-.card:nth-child(2) .card-icon{
-  border-color:#2c9cff;
-  box-shadow:
-    0 0 0 20px rgba(30,150,255,.05),
-    0 0 0 40px rgba(30,150,255,.03),
-    0 0 35px rgba(30,150,255,.35);
-}
-
-.card:nth-child(3){
-  border-color:#8b35ff;
-}
-
-.small-title{
-  color:#a889ff;
-  font-size:15px;
-  font-weight:bold;
-  letter-spacing:4px;
-  margin-top:35px;
-}
-
-.card h2{
-  font-size:36px;
-  margin:20px 0;
-}
-
-.card p{
-  color:#9da1bd;
-  line-height:1.9;
-  font-size:17px;
-}
-
-.arrow{
-  width:65px;
-  height:65px;
-  border-radius:50%;
-  border:2px solid #7656ff;
-  background:transparent;
-  color:#fff;
-  font-size:32px;
-  cursor:pointer;
-  transition:.25s;
-  margin-top:25px;
-}
-
-.arrow:hover{
-  background:#673dff;
-  transform:scale(1.08);
-}
-
-.workspace{
-  padding:30px 0 100px;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.workspace-box{
-  border:1px solid rgba(120,90,255,.55);
-  border-radius:32px;
-  padding:28px;
-  background:rgba(10,12,35,.9);
-  box-shadow:0 0 45px rgba(75,55,255,.2);
-}
-
-.workspace-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  margin-bottom:25px;
-}
-
-.workspace-head h2{
-  font-size:30px;
-}
-
-.workspace-head p{
-  color:#9ea3c0;
-  margin-top:7px;
-}
-
-.close-btn{
-  border:1px solid #555;
-  background:#111329;
-  color:white;
-  width:45px;
-  height:45px;
-  border-radius:12px;
-  cursor:pointer;
-  font-size:22px;
-}
-
-.modes{
-  display:flex;
-  gap:10px;
-  margin-bottom:20px;
-}
-
-.mode{
-  flex:1;
-  border:1px solid #33385e;
-  background:#0d1029;
-  color:#b8bdd9;
-  padding:13px;
-  border-radius:14px;
-  cursor:pointer;
-  font-size:16px;
-}
-
-.mode.active{
-  background:linear-gradient(135deg,#4930ff,#8f35ff);
-  color:white;
-  border-color:#825eff;
-}
-
-textarea{
-  width:100%;
-  min-height:170px;
-  resize:vertical;
-  border-radius:20px;
-  border:1px solid #34385f;
-  background:#080a1d;
-  color:#fff;
-  padding:20px;
-  font-size:18px;
-  line-height:1.8;
-  outline:none;
-}
-
-textarea:focus{
-  border-color:#795cff;
-  box-shadow:0 0 20px rgba(95,65,255,.2);
-}
-
-.counter{
-  color:#777c9c;
-  margin-top:8px;
-  font-size:14px;
-}
-
-.generate{
-  width:100%;
-  margin-top:18px;
-  border:0;
-  border-radius:17px;
-  padding:17px;
-  font-size:18px;
-  font-weight:bold;
-  color:white;
-  background:linear-gradient(135deg,#5031ff,#a137ff);
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(91,48,255,.3);
-}
-
-.generate:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-}
-
-.result{
-  display:none;
-  margin-top:25px;
-  padding:18px;
-  border-radius:20px;
-  background:#080a1c;
-  border:1px solid #282d50;
-}
-
-.result.show{
-  display:block;
-}
-
-.result img{
-  display:block;
-  width:100%;
-  max-width:700px;
-  margin:auto;
-  border-radius:18px;
-}
-
-.result-actions{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.result-actions a,
-.result-actions button{
-  border:0;
-  border-radius:12px;
-  padding:13px 20px;
-  color:white;
-  background:#5737ff;
-  text-decoration:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.loading{
-  text-align:center;
-  color:#aaaed0;
-  padding:35px;
-}
-
-.spinner{
-  width:38px;
-  height:38px;
-  border:4px solid #292d4d;
-  border-top-color:#855aff;
-  border-radius:50%;
-  display:inline-block;
-  animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
-.toast{
-  position:fixed;
-  bottom:25px;
-  left:50%;
-  transform:translate(-50%,120px);
-  background:#171a36;
-  border:1px solid #6951ff;
-  color:white;
-  padding:14px 22px;
-  border-radius:15px;
-  z-index:100;
-  transition:.3s;
-  box-shadow:0 0 25px rgba(85,60,255,.35);
-}
-
-.toast.show{
-  transform:translate(-50%,0);
-}
-
-footer{
-  text-align:center;
-  color:#666b88;
-  padding:30px 0 50px;
-}
-
-@media(max-width:850px){
-  .cards{
-    grid-template-columns:1fr;
-  }
-
-  .card{
-    min-height:430px;
-  }
-}
-
-@media(max-width:600px){
-  .container{
-    width:94%;
-  }
-
-  header{
-    padding:12px 0;
-  }
-
-  .logo{
-    font-size:22px;
-  }
-
-  .logo-icon{
-    width:48px;
-    height:48px;
-    font-size:25px;
-  }
-
-  .login{
-    padding:12px 16px;
-    font-size:14px;
-  }
-
-  .hero{
-    padding-top:55px;
-  }
-
-  .hero p{
-    font-size:17px;
-  }
-
-  .workspace-box{
-    padding:18px;
-  }
-
-  .workspace-head h2{
-    font-size:24px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07081a">
+
+  <title>Khayal AI — خيال AI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(96, 50, 255, .20), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(179, 54, 255, .18), transparent 30%),
+        linear-gradient(180deg, #050617 0%, #090b22 55%, #050617 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .16;
+      background-image:
+        linear-gradient(rgba(91, 103, 255, .20) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91, 103, 255, .20) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    .page {
+      width: min(1100px, 100%);
+      margin: auto;
+      padding: 0 18px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      padding: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo {
+      width: 62px;
+      height: 62px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      font-size: 32px;
+      background:
+        linear-gradient(135deg, #6038ff, #ab35ff);
+      box-shadow:
+        0 0 28px rgba(125, 61, 255, .48);
+    }
+
+    .brand-name {
+      font-size: 31px;
+      font-weight: 900;
+      letter-spacing: -.5px;
+    }
+
+    .brand-name span {
+      background:
+        linear-gradient(90deg, #fff, #a777ff, #d65cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .login-btn {
+      text-decoration: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 17px 27px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, #5832ff, #b532ff);
+      box-shadow:
+        0 10px 35px rgba(112, 49, 255, .25);
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      text-align: center;
+      padding: 65px 10px 38px;
+    }
+
+    .hero h1 {
+      font-size: clamp(37px, 8vw, 70px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      font-weight: 950;
+    }
+
+    .hero h1 span {
+      background:
+        linear-gradient(90deg, #ffffff, #9b6fff, #df58ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      color: #aeb4d7;
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    /* ================= MODES ================= */
+
+    .modes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 34px 0;
+    }
+
+    .mode-card {
+      min-height: 155px;
+      padding: 25px 18px;
+      border: 1px solid rgba(116, 130, 255, .30);
+      border-radius: 27px;
+      background:
+        linear-gradient(180deg, rgba(20, 22, 56, .90), rgba(10, 12, 35, .90));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.03);
+      cursor: pointer;
+      transition: .25s ease;
+      text-align: center;
+    }
+
+    .mode-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(146, 92, 255, .75);
+    }
+
+    .mode-card.active {
+      background:
+        linear-gradient(135deg, #5c32ff, #a934ff);
+      border-color: transparent;
+      box-shadow:
+        0 12px 40px rgba(108, 50, 255, .35);
+    }
+
+    .mode-icon {
+      font-size: 37px;
+      margin-bottom: 12px;
+    }
+
+    .mode-title {
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .mode-sub {
+      color: #b6b9d5;
+      margin-top: 7px;
+      font-size: 14px;
+    }
+
+    .mode-card.active .mode-sub {
+      color: #f1eaff;
+    }
+
+    /* ================= WORKSPACE ================= */
+
+    .workspace {
+      margin-top: 28px;
+      border: 1px solid rgba(120, 136, 255, .35);
+      border-radius: 30px;
+      padding: 25px;
+      background:
+        linear-gradient(180deg, rgba(9, 11, 33, .93), rgba(8, 10, 28, .95));
+      box-shadow:
+        0 0 50px rgba(53, 47, 155, .13);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .workspace-head {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .workspace-head h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .workspace-head p {
+      color: #9da4ca;
+      line-height: 1.7;
+    }
+
+    .prompt-box {
+      width: 100%;
+      min-height: 260px;
+      resize: vertical;
+      padding: 26px;
+      border-radius: 24px;
+      outline: none;
+      border: 1px solid rgba(124, 139, 255, .35);
+      background: rgba(3, 5, 20, .75);
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.8;
+      direction: rtl;
+    }
+
+    .prompt-box:focus {
+      border-color: #8057ff;
+      box-shadow:
+        0 0 0 3px rgba(128, 87, 255, .10);
+    }
+
+    .prompt-box::placeholder {
+      color: #70779d;
+    }
+
+    .prompt-info {
+      display: flex;
+      justify-content: flex-start;
+      padding-top: 10px;
+      color: #7f87af;
+      font-size: 16px;
+    }
+
+    .generate-btn {
+      width: 100%;
+      margin-top: 24px;
+      border: none;
+      border-radius: 22px;
+      padding: 22px 20px;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 900;
+      cursor: pointer;
+      background:
+        linear-gradient(135deg, #5c32ff, #ab32ff);
+      box-shadow:
+        0 14px 40px rgba(107, 46, 255, .28);
+      transition: .2s ease;
+    }
+
+    .generate-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .generate-btn:disabled {
+      opacity: .65;
+      cursor: wait;
+      transform: none;
+    }
+
+    /* ================= RESULT ================= */
+
+    .result {
+      display: none;
+      margin-top: 28px;
+      border-radius: 28px;
+      padding: 18px;
+      background: rgba(4, 6, 20, .74);
+      border: 1px solid rgba(118, 130, 255, .27);
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result-image-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #03040e;
+    }
+
+    .result-image-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .loading {
+      min-height: 160px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #b8bedc;
+      font-size: 19px;
+      padding: 30px;
+      line-height: 1.8;
+    }
+
+    .spinner {
+      width: 34px;
+      height: 34px;
+      display: inline-block;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,.15);
+      border-top-color: #a35aff;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .action-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+      border: none;
+      border-radius: 17px;
+      text-decoration: none;
+      color: #fff;
+      background:
+        linear-gradient(135deg, #572eff, #9332ff);
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .action-btn.secondary {
+      background: rgba(80, 88, 145, .25);
+      border: 1px solid rgba(132, 143, 255, .22);
+    }
+
+    /* ================= INFO ================= */
+
+    .notice {
+      margin-top: 26px;
+      color: #9299bd;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translate(-50%, 25px);
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(14, 17, 46, .96);
+      border: 1px solid rgba(141, 101, 255, .35);
+      color: #fff;
+      padding: 13px 20px;
+      border-radius: 15px;
+      z-index: 999;
+      transition: .25s ease;
+      box-shadow: 0 10px 40px rgba(0,0,0,.3);
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 0 12px 40px;
+      }
+
+      header {
+        padding-top: 15px;
+      }
+
+      .brand-name {
+        font-size: 26px;
+      }
+
+      .logo {
+        width: 55px;
+        height: 55px;
+        border-radius: 19px;
+      }
+
+      .login-btn {
+        padding: 15px 18px;
+        font-size: 16px;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .modes {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 9px;
+      }
+
+      .mode-card {
+        min-height: 128px;
+        padding: 17px 8px;
+        border-radius: 20px;
+      }
+
+      .mode-icon {
+        font-size: 29px;
+      }
+
+      .mode-title {
+        font-size: 17px;
+      }
+
+      .mode-sub {
+        display: none;
+      }
+
+      .workspace {
+        padding: 15px;
+        border-radius: 24px;
+      }
+
+      .workspace-head h2 {
+        font-size: 25px;
+      }
+
+      .prompt-box {
+        min-height: 235px;
+        font-size: 21px;
+        padding: 20px;
+      }
+
+      .generate-btn {
+        font-size: 22px;
+      }
+
+      .result-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container nav">
-    <div class="logo">
-      <div class="logo-icon">✦</div>
-      <span>Khayal AI</span>
-    </div>
+  <div class="page">
 
-    <button class="login" onclick="toast('تسجيل الدخول سيكون متاحًا قريبًا')">
-      ♙ تسجيل الدخول
-    </button>
-  </div>
-</header>
+    <!-- HEADER -->
+    <header>
+      <a class="login-btn" href="#" onclick="toast('تسجيل الدخول سيُفعّل لاحقًا')">
+        ♙ تسجيل الدخول
+      </a>
 
-<main>
+      <div class="brand">
+        <div class="brand-name">
+          <span>Khayal AI</span>
+        </div>
 
-<section class="hero container">
-  <div class="badge">منصة إبداعية مدعومة بالذكاء الاصطناعي</div>
+        <div class="logo">✦</div>
+      </div>
+    </header>
 
-  <h1>
-    حوّل <span class="gradient">خيالك</span> إلى واقع
-  </h1>
+    <!-- HERO -->
+    <section class="hero">
+      <h1>
+        حوّل <span>خيالك</span> إلى واقع
+      </h1>
 
-  <p>
-    أنشئ صورًا، مقاطع فيديو، وحرّك صورك بأسلوب سينمائي
-    من خلال تجربة واحدة أنيقة وسهلة.
-  </p>
-</section>
-
-
-<section class="cards container">
-
-  <div class="card">
-    <div class="card-icon">▷</div>
-
-    <div class="small-title">AI VIDEO STUDIO</div>
-
-    <div>
-      <h2>توليد الفيديو</h2>
       <p>
-        حوّل أفكارك إلى مقاطع فيديو إبداعية بالذكاء الاصطناعي.
+        أنشئ صورًا مذهلة من وصفك بالعربية أو الإنجليزية،
+        واستكشف عالم الإبداع مع Khayal AI.
       </p>
-    </div>
+    </section>
 
-    <button class="arrow" onclick="openWorkspace('video')">
-      ←
-    </button>
-  </div>
+    <!-- MODES -->
+    <section class="modes">
 
+      <div
+        class="mode-card"
+        onclick="openWorkspace('animate')"
+      >
+        <div class="mode-icon">✨</div>
+        <div class="mode-title">التحريك</div>
+        <div class="mode-sub">حرّك صورك</div>
+      </div>
 
-  <div class="card">
-    <div class="card-icon">⌁</div>
+      <div
+        class="mode-card"
+        onclick="openWorkspace('video')"
+      >
+        <div class="mode-icon">🎬</div>
+        <div class="mode-title">الفيديو</div>
+        <div class="mode-sub">أنشئ مقاطع فيديو</div>
+      </div>
 
-    <div class="small-title">AI IMAGE STUDIO</div>
+      <div
+        class="mode-card active"
+        onclick="openWorkspace('image')"
+        id="imageCard"
+      >
+        <div class="mode-icon">🏞️</div>
+        <div class="mode-title">الصور</div>
+        <div class="mode-sub">أنشئ صورة بالذكاء الاصطناعي</div>
+      </div>
 
-    <div>
-      <h2>توليد الصور</h2>
-      <p>
-        أنشئ صورًا مذهلة من وصفك وأفكارك الخاصة بجودة عالية.
-      </p>
-    </div>
+    </section>
 
-    <button class="arrow" onclick="openWorkspace('image')">
-      ←
-    </button>
-  </div>
+    <!-- WORKSPACE -->
+    <section
+      class="workspace"
+      id="workspace"
+    >
 
-
-  <div class="card">
-    <div class="card-icon">◈</div>
-
-    <div class="small-title">AI MOTION STUDIO</div>
-
-    <div>
-      <h2>تحريك الصور</h2>
-      <p>
-        حوّل صورك الثابتة إلى مشاهد متحركة بطريقة إبداعية.
-      </p>
-    </div>
-
-    <button class="arrow" onclick="openWorkspace('animate')">
-      ←
-    </button>
-  </div>
-
-</section>
-
-
-<section id="workspace" class="workspace container hidden">
-
-  <div class="workspace-box">
-
-    <div class="workspace-head">
-
-      <div>
+      <div class="workspace-head">
         <h2 id="wtitle">توليد الصور</h2>
-        <p id="wsub">اكتب وصفًا وسنحوّله إلى صورة.</p>
+
+        <p id="wsub">
+          اكتب وصفًا بالعربية أو الإنجليزية وسنحوّله إلى صورة.
+        </p>
       </div>
 
-      <button class="close-btn" onclick="closeWorkspace()">×</button>
+      <textarea
+        id="prompt"
+        class="prompt-box"
+        maxlength="1000"
+        placeholder="اكتب فكرتك هنا... مثال: قطة بيضاء تحت المطر في مدينة مستقبلية ليلية"
+      ></textarea>
 
-    </div>
-
-
-    <div class="modes">
-
-      <button
-        id="imageMode"
-        class="mode active"
-        onclick="setWorkspaceMode('image')">
-        🖼️ الصور
-      </button>
+      <div class="prompt-info">
+        <span id="counter">0 / 1000</span>
+      </div>
 
       <button
-        id="videoMode"
-        class="mode"
-        onclick="setWorkspaceMode('video')">
-        🎬 الفيديو
+        class="generate-btn"
+        id="generateBtn"
+        onclick="generate()"
+      >
+        إنشاء الصورة
       </button>
 
-      <button
-        id="animateMode"
-        class="mode"
-        onclick="setWorkspaceMode('animate')">
-        ✨ التحريك
-      </button>
+      <div
+        class="result"
+        id="result"
+      ></div>
 
-    </div>
+      <div class="notice">
+        ✦ الصور المنشأة بواسطة Khayal AI تحمل علامة مائية صغيرة لحماية المحتوى.
+      </div>
 
-
-    <textarea
-      id="prompt"
-      maxlength="1000"
-      placeholder="اكتب فكرتك هنا... مثال: مدينة مستقبلية ليلية بإضاءة نيون وأجواء سينمائية"></textarea>
-
-    <div class="counter" id="counter">
-      0 / 1000
-    </div>
-
-
-    <button
-      id="generateBtn"
-      class="generate"
-      onclick="generate()">
-      إنشاء الصورة
-    </button>
-
-
-    <div id="result" class="result"></div>
+    </section>
 
   </div>
 
-</section>
+  <div
+    class="toast"
+    id="toast"
+  ></div>
 
-</main>
+  <script>
 
+    const promptBox =
+      document.getElementById("prompt");
 
-<footer>
-  <div class="container">
-    Khayal AI — حوّل خيالك إلى واقع
-  </div>
-</footer>
+    const counter =
+      document.getElementById("counter");
 
+    const result =
+      document.getElementById("result");
 
-<div id="toast" class="toast"></div>
+    const generateBtn =
+      document.getElementById("generateBtn");
 
+    let currentMode = "image";
 
-<script>
+    /* ==========================================
+       عداد الأحرف
+    ========================================== */
 
-const WORKER_URL =
-  "https://khayal-ai-website.mohhhaa57.workers.dev";
-
-const promptBox =
-  document.getElementById("prompt");
-
-const counter =
-  document.getElementById("counter");
-
-const result =
-  document.getElementById("result");
-
-const generateBtn =
-  document.getElementById("generateBtn");
-
-let currentMode = "image";
-
-
-promptBox.addEventListener("input", () => {
-  counter.textContent =
-    promptBox.value.length + " / 1000";
-});
-
-
-function toast(message){
-
-  const t =
-    document.getElementById("toast");
-
-  t.textContent = message;
-
-  t.classList.add("show");
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer =
-    setTimeout(() => {
-      t.classList.remove("show");
-    }, 2200);
-}
-
-
-function openWorkspace(mode){
-
-  document
-    .getElementById("workspace")
-    .classList.remove("hidden");
-
-  setWorkspaceMode(mode);
-
-  document
-    .getElementById("workspace")
-    .scrollIntoView({
-      behavior:"smooth",
-      block:"start"
+    promptBox.addEventListener("input", () => {
+      counter.textContent =
+        promptBox.value.length + " / 1000";
     });
-}
 
+    /* ==========================================
+       Toast
+    ========================================== */
 
-function closeWorkspace(){
+    function toast(message) {
+      const t =
+        document.getElementById("toast");
 
-  document
-    .getElementById("workspace")
-    .classList.add("hidden");
-}
+      t.textContent = message;
 
+      t.classList.add("show");
 
-function setWorkspaceMode(mode){
+      clearTimeout(window.__toastTimer);
 
-  currentMode = mode;
+      window.__toastTimer =
+        setTimeout(() => {
+          t.classList.remove("show");
+        }, 2200);
+    }
 
-  document
-    .getElementById("imageMode")
-    .classList.toggle(
-      "active",
-      mode === "image"
-    );
+    /* ==========================================
+       فتح مساحة العمل
+    ========================================== */
 
-  document
-    .getElementById("videoMode")
-    .classList.toggle(
-      "active",
-      mode === "video"
-    );
+    function openWorkspace(mode) {
 
-  document
-    .getElementById("animateMode")
-    .classList.toggle(
-      "active",
-      mode === "animate"
-    );
+      document
+        .getElementById("workspace")
+        .classList.remove("hidden");
 
+      setWorkspaceMode(mode);
 
-  if(mode === "image"){
+      document
+        .getElementById("workspace")
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    }
 
-    document.getElementById("wtitle").textContent =
-      "توليد الصور";
+    /* ==========================================
+       تغيير نوع التوليد
+    ========================================== */
 
-    document.getElementById("wsub").textContent =
-      "اكتب وصفًا وسنحوّله إلى صورة.";
+    function setWorkspaceMode(mode) {
 
-    generateBtn.textContent =
-      "إنشاء الصورة";
+      currentMode = mode;
 
-    promptBox.placeholder =
-      "اكتب وصف الصورة التي تريد إنشاءها...";
+      document
+        .querySelectorAll(".mode-card")
+        .forEach(card => {
+          card.classList.remove("active");
+        });
 
-  }
+      if (mode === "image") {
 
+        document
+          .getElementById("imageCard")
+          .classList.add("active");
 
-  if(mode === "video"){
+        document
+          .getElementById("wtitle")
+          .textContent = "توليد الصور";
 
-    document.getElementById("wtitle").textContent =
-      "توليد الفيديو";
+        document
+          .getElementById("wsub")
+          .textContent =
+            "اكتب وصفًا بالعربية أو الإنجليزية وسنحوّله إلى صورة.";
 
-    document.getElementById("wsub").textContent =
-      "واجهة الفيديو جاهزة للربط بمحرك توليد الفيديو.";
+        generateBtn.textContent =
+          "إنشاء الصورة";
 
-    generateBtn.textContent =
-      "إنشاء الفيديو";
+      } else if (mode === "video") {
 
-    promptBox.placeholder =
-      "اكتب وصف الفيديو الذي تريد إنشاءه...";
+        document
+          .getElementById("wtitle")
+          .textContent = "توليد الفيديو";
 
-  }
+        document
+          .getElementById("wsub")
+          .textContent =
+            "محرك الفيديو سيتم ربطه لاحقًا مع نفس نظام العلامة المائية.";
 
+        generateBtn.textContent =
+          "إنشاء الفيديو";
 
-  if(mode === "animate"){
+      } else {
 
-    document.getElementById("wtitle").textContent =
-      "تحريك الصور";
+        document
+          .getElementById("wtitle")
+          .textContent = "تحريك الصور";
 
-    document.getElementById("wsub").textContent =
-      "واجهة تحريك الصور جاهزة للربط بمحرك التحريك.";
+        document
+          .getElementById("wsub")
+          .textContent =
+            "ميزة تحريك الصور سيتم ربطها لاحقًا.";
 
-    generateBtn.textContent =
-      "تحريك الصورة";
+        generateBtn.textContent =
+          "تحريك الصورة";
+      }
+    }
 
-    promptBox.placeholder =
-      "اكتب الحركة التي تريد إضافتها إلى الصورة...";
+    /* ==========================================
+       الهروب من HTML
+    ========================================== */
 
-  }
+    function escapeHtml(value) {
 
-}
+      return String(value).replace(
+        /[&<>"']/g,
+        function (char) {
 
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+          }[char];
 
-async function generate(){
-
-  const prompt =
-    promptBox.value.trim();
-
-
-  if(!prompt){
-
-    toast("اكتب وصفًا لفكرتك أولاً");
-
-    promptBox.focus();
-
-    return;
-  }
-
-
-  if(currentMode === "video"){
-
-    toast("توليد الفيديو سيُفعّل بعد ربط محرك الفيديو");
-
-    return;
-  }
-
-
-  if(currentMode === "animate"){
-
-    toast("تحريك الصور سيُفعّل بعد إضافة محرك التحريك");
-
-    return;
-  }
-
-
-  generateBtn.disabled = true;
-
-  generateBtn.textContent =
-    "جاري إنشاء الصورة...";
-
-
-  result.classList.add("show");
-
-  result.innerHTML = `
-    <div class="loading">
-      <span class="spinner"></span>
-      <div style="margin-top:15px">
-        جاري تحويل خيالك إلى صورة...
-      </div>
-    </div>
-  `;
-
-
-  try{
-
-    const response =
-      await fetch(
-        WORKER_URL + "/api/generate",
-        {
-          method:"POST",
-
-          headers:{
-            "Content-Type":
-              "application/json"
-          },
-
-          body:JSON.stringify({
-            prompt:prompt
-          })
         }
       );
+    }
 
+    /* ==========================================
+       تحويل صورة base64 إلى صورة فعلية
+    ========================================== */
 
-    const data =
-      await response.json();
+    function loadImage(src) {
 
+      return new Promise((resolve, reject) => {
 
-    if(!response.ok){
+        const img =
+          new Image();
 
-      throw new Error(
-        data.error ||
-        "حدث خطأ أثناء التوليد"
+        img.onload = () => resolve(img);
+
+        img.onerror = reject;
+
+        img.src = src;
+
+      });
+    }
+
+    /* ==========================================
+       إنشاء العلامة المائية داخل الصورة نفسها
+    ========================================== */
+
+    async function addWatermark(imageSrc) {
+
+      const img =
+        await loadImage(imageSrc);
+
+      const canvas =
+        document.createElement("canvas");
+
+      canvas.width =
+        img.naturalWidth || img.width;
+
+      canvas.height =
+        img.naturalHeight || img.height;
+
+      const ctx =
+        canvas.getContext("2d");
+
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        canvas.width,
+        canvas.height
       );
 
-    }
+      /*
+        حجم العلامة يتكيف مع حجم الصورة
+      */
 
+      const scale =
+        Math.max(
+          canvas.width / 1024,
+          canvas.height / 1024,
+          1
+        );
 
-    if(!data.image){
+      const padding =
+        Math.round(25 * scale);
 
-      throw new Error(
-        "لم يتم استلام الصورة"
+      const fontSize =
+        Math.round(27 * scale);
+
+      const iconSize =
+        Math.round(31 * scale);
+
+      const text =
+        "Khayal AI";
+
+      ctx.save();
+
+      /*
+        قياس النص
+      */
+
+      ctx.font =
+        `700 ${fontSize}px Arial, Tahoma, sans-serif`;
+
+      const textWidth =
+        ctx.measureText(text).width;
+
+      const contentWidth =
+        iconSize + 10 + textWidth;
+
+      const boxWidth =
+        contentWidth + padding * 2;
+
+      const boxHeight =
+        Math.round(52 * scale);
+
+      const x =
+        canvas.width -
+        boxWidth -
+        padding;
+
+      const y =
+        canvas.height -
+        boxHeight -
+        padding;
+
+      /*
+        خلفية شفافة احترافية
+      */
+
+      const gradient =
+        ctx.createLinearGradient(
+          x,
+          y,
+          x + boxWidth,
+          y + boxHeight
+        );
+
+      gradient.addColorStop(
+        0,
+        "rgba(20, 23, 55, 0.68)"
       );
 
+      gradient.addColorStop(
+        1,
+        "rgba(80, 35, 130, 0.60)"
+      );
+
+      ctx.fillStyle =
+        gradient;
+
+      ctx.beginPath();
+
+      const radius =
+        Math.round(18 * scale);
+
+      ctx.roundRect(
+        x,
+        y,
+        boxWidth,
+        boxHeight,
+        radius
+      );
+
+      ctx.fill();
+
+      /*
+        حد خفيف جدًا
+      */
+
+      ctx.strokeStyle =
+        "rgba(255,255,255,0.22)";
+
+      ctx.lineWidth =
+        Math.max(1, scale);
+
+      ctx.stroke();
+
+      /*
+        بريق صغير
+      */
+
+      const iconX =
+        x + padding + iconSize / 2;
+
+      const iconY =
+        y + boxHeight / 2;
+
+      ctx.fillStyle =
+        "rgba(255,255,255,0.92)";
+
+      ctx.font =
+        `${iconSize}px Arial`;
+
+      ctx.textAlign =
+        "center";
+
+      ctx.textBaseline =
+        "middle";
+
+      ctx.fillText(
+        "✦",
+        iconX,
+        iconY
+      );
+
+      /*
+        اسم الموقع
+      */
+
+      ctx.font =
+        `700 ${fontSize}px Arial, Tahoma, sans-serif`;
+
+      ctx.textAlign =
+        "left";
+
+      ctx.fillStyle =
+        "rgba(255,255,255,0.88)";
+
+      ctx.fillText(
+        text,
+        x + padding + iconSize + 10,
+        iconY + 1
+      );
+
+      ctx.restore();
+
+      /*
+        جودة PNG عالية
+      */
+
+      return canvas.toDataURL(
+        "image/png"
+      );
     }
 
+    /* ==========================================
+       إنشاء الصورة
+    ========================================== */
 
-    result.innerHTML = `
+    async function generate() {
 
-      <img
-        src="${data.image}"
-        alt="الصورة التي تم إنشاؤها"
-      >
+      if (currentMode !== "image") {
 
-      <div class="result-actions">
+        toast(
+          currentMode === "video"
+            ? "توليد الفيديو سيُفعّل لاحقًا."
+            : "تحريك الصور سيُفعّل لاحقًا."
+        );
 
-        <a
-          class="primary"
-          href="${data.image}"
-          download="khayal-ai.png">
-          حفظ الصورة
-        </a>
+        return;
+      }
 
-        <button onclick="downloadImage()">
-          تنزيل
-        </button>
+      const prompt =
+        promptBox.value.trim();
 
-      </div>
+      if (!prompt) {
 
-    `;
+        toast(
+          "اكتب وصفًا لفكرتك أولاً"
+        );
 
+        promptBox.focus();
 
-    toast("تم إنشاء الصورة بنجاح");
+        return;
+      }
 
-    result.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
+      generateBtn.disabled = true;
 
-
-  }catch(error){
-
-    result.innerHTML = `
-
-      <div class="loading">
-
-        تعذر إنشاء الصورة
-
-        <br>
-
-        <small>
-          ${escapeHtml(
-            error.message ||
-            "حدث خطأ غير معروف"
-          )}
-        </small>
-
-      </div>
-
-    `;
-
-    toast("تعذر إنشاء الصورة");
-
-  }finally{
-
-    generateBtn.disabled = false;
-
-    generateBtn.textContent =
-      "إنشاء الصورة";
-
-    if(currentMode === "video"){
       generateBtn.textContent =
-        "إنشاء الفيديو";
-    }
+        "جاري إنشاء الصورة...";
 
-    if(currentMode === "animate"){
-      generateBtn.textContent =
-        "تحريك الصورة";
-    }
+      result.classList.add("show");
 
-  }
+      result.innerHTML = `
+        <div class="loading">
+          <div>
+            <span class="spinner"></span>
+            <div style="margin-top:14px">
+              جاري تحويل خيالك إلى صورة...
+            </div>
+          </div>
+        </div>
+      `;
 
-}
+      try {
 
-
-function escapeHtml(value){
-
-  return String(value).replace(
-    /[&<>"']/g,
-    function(char){
-
-      return {
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-
-      }[char];
-
-    }
-  );
-
-}
-
-
-function downloadImage(){
-
-  const img =
-    result.querySelector("img");
-
-  if(!img){
-
-    toast("لا توجد صورة لتنزيلها");
-
-    return;
-  }
-
-
-  const a =
-    document.createElement("a");
-
-  a.href = img.src;
-
-  a.download =
-    "khayal-ai.png";
-
-  document.body.appendChild(a);
-
-  a.click();
-
-  a.remove();
-
-}
-
-</script>
-
-</body>
-</html>
+        const re
