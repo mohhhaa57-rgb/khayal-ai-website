@@ -3,23 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#070914">
-    <meta name="description" content="Khayal AI - منصة إبداعية متكاملة لتوليد الصور، تحريكها، والفيديوهات بالذكاء الاصطناعي">
-    <title>Khayal AI - استوديو الذكاء الاصطناعي الإبداعي</title>
+    <title>Khayal AI - استوديو الإبداع الذكي</title>
     <style>
         :root {
-            --bg: #070914;
-            --bg2: #0f1328;
-            --panel: rgba(14, 18, 34, 0.78);
-            --panel2: rgba(18, 23, 44, 0.88);
-            --line: rgba(148, 163, 184, 0.14);
-            --line2: rgba(139, 92, 246, 0.34);
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --primary: #8b5cf6;
-            --primary-hover: #7c3aed;
-            --accent: #06b6d4;
-            --gradient: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+            --bg-color: #070914;
+            --card-bg: #0e1222;
+            --border-color: rgba(148, 163, 184, 0.12);
+            --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --accent-glow: rgba(139, 92, 246, 0.25);
         }
 
         * {
@@ -30,32 +23,31 @@
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--bg-color);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px;
+            padding: 12px;
         }
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
-        /* Header */
+        /* الهيدر العلوي */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--panel);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--line);
-            padding: 12px 18px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
             border-radius: 16px;
         }
 
@@ -66,179 +58,191 @@
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--gradient);
-            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gradient);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-size: 20px;
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .logo-text h1 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
-            letter-spacing: 0.5px;
         }
 
         .logo-text span {
             font-size: 10px;
-            color: var(--muted);
+            color: var(--text-muted);
         }
 
         .auth-btn {
             background: rgba(139, 92, 246, 0.15);
-            border: 1px solid var(--line2);
-            color: var(--text);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--text-main);
             padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 13px;
+            border-radius: 12px;
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
         }
 
-        .auth-btn:hover {
-            background: var(--primary);
-        }
-
-        /* Hero Banner */
-        .hero {
-            background: var(--panel2);
-            border: 1px solid var(--line);
+        /* البانر الترحيبي */
+        .hero-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 24px;
+            padding: 20px;
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            position: relative;
-            overflow: hidden;
+            gap: 12px;
         }
 
-        .hero h2 {
-            font-size: 22px;
-            background: var(--gradient);
+        .hero-card h2 {
+            font-size: 18px;
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.6;
+        .hero-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
-        .main-action-btn {
-            background: var(--gradient);
+        .hero-btn {
+            background: var(--primary-gradient);
             border: none;
             color: white;
             padding: 12px;
             border-radius: 14px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-            transition: transform 0.2s;
-        }
-
-        .main-action-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Navigation Tabs */
-        .tabs-container {
-            display: flex;
-            background: var(--panel);
-            padding: 6px;
-            border-radius: 14px;
-            border: 1px solid var(--line);
-            gap: 5px;
-        }
-
-        .tab-btn {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: var(--muted);
-            padding: 10px;
-            border-radius: 10px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .ad-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed var(--border-color);
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+
+        /* حاوية الأداة الموحدة (بنفس تصميم الكروت في صورتك) */
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .card-header-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-header-title span:first-child {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .icon-badge {
+            width: 32px;
+            height: 32px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* التابات الداخلية داخل الكارت */
+        .inner-tabs {
+            display: flex;
+            background: rgba(7, 9, 20, 0.5);
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            gap: 4px;
+        }
+
+        .inner-tab {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
             transition: 0.2s;
         }
 
-        .tab-btn.active {
-            background: var(--primary);
+        .inner-tab.active {
+            background: var(--primary-gradient);
             color: white;
-            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 2px 8px var(--accent-glow);
         }
 
-        /* Tool Panels */
-        .tool-panel {
+        .sub-panel {
             display: none;
-            background: var(--panel2);
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            padding: 20px;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .tool-panel.active {
+        .sub-panel.active {
             display: flex;
-        }
-
-        .tool-title {
-            font-size: 15px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         textarea, input[type="text"], input[type="file"] {
             width: 100%;
-            background: rgba(7, 9, 20, 0.6);
-            border: 1px solid var(--line);
+            background: rgba(7, 9, 20, 0.7);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 12px;
-            color: var(--text);
+            color: var(--text-main);
             font-size: 13px;
-            resize: none;
             outline: none;
-            transition: border-color 0.2s;
         }
 
-        textarea:focus, input[type="text"]:focus {
-            border-color: var(--primary);
+        textarea:focus, input:focus {
+            border-color: #8b5cf6;
         }
 
         .action-btn {
-            background: var(--gradient);
+            background: var(--primary-gradient);
             border: none;
             color: white;
             padding: 12px;
             border-radius: 12px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s;
+            width: 100%;
         }
 
-        .action-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Result Display Area */
         .result-box {
-            margin-top: 10px;
-            background: rgba(0,0,0,0.3);
-            border: 1px dashed var(--line2);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed rgba(139, 92, 246, 0.3);
             border-radius: 14px;
-            padding: 15px;
+            padding: 12px;
             text-align: center;
             display: none;
             flex-direction: column;
@@ -249,28 +253,17 @@
         .result-box img, .result-box video {
             max-width: 100%;
             border-radius: 10px;
-            max-height: 300px;
+            max-height: 260px;
         }
 
-        /* Ad Banner Section */
-        .ad-banner {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            padding: 15px;
-            text-align: center;
-            color: #64748b;
-            font-size: 11px;
-        }
-
-        /* Modal Authentication */
-        .modal {
+        /* النوافذ المنبثقة */
+        .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(5px);
             display: none;
             align-items: center;
@@ -280,39 +273,28 @@
         }
 
         .modal-content {
-            background: var(--panel2);
-            border: 1px solid var(--line2);
+            background: var(--card-bg);
+            border: 1px solid rgba(139, 92, 246, 0.4);
             width: 100%;
-            max-width: 400px;
-            padding: 24px;
+            max-width: 380px;
+            padding: 20px;
             border-radius: 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 14px;
+            text-align: center;
         }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            color: var(--muted);
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 5px;
         }
 
         @keyframes spin {
@@ -323,208 +305,208 @@
 <body>
 
     <div class="container">
-        <!-- Header -->
+        <!-- الهيدر -->
         <header>
             <div class="logo-area">
                 <div class="logo-icon">✨</div>
                 <div class="logo-text">
                     <h1>Khayal AI</h1>
-                    <span>استوديو الإبداع الذكي</span>
+                    <span>CREATIVE AI STUDIO</span>
                 </div>
             </div>
-            <button class="auth-btn" id="authBtn" onclick="openAuthModal()">تسجيل الدخول</button>
+            <button class="auth-btn" id="authBtnText" onclick="openAuth()">تسجيل الدخول</button>
         </header>
 
-        <!-- Hero Section -->
-        <header class="hero" style="border: none; display: flex;">
+        <!-- الهيرو -->
+        <div class="hero-card">
             <h2>حوّل أفكارك إلى واقع مرئي</h2>
-            <p>أنشئ صوراً فنية مذهلة، حرّكها، وولّد مشاهد سينمائية قصيرة بكل سهولة باستخدام الذكاء الاصطناعي المجاني.</p>
-            <button class="main-action-btn" onclick="switchTab('video')">ابدأ استوديو الفيديو الآن</button>
-        </header>
-
-        <!-- Ad Banner (مساحة الإعلانات العليا) -->
-        <div class="ad-banner">
-            <span>إعلان مميز</span>
-            <!-- مكان إعلانات جوجل أو الشبكة الإعلانية -->
+            <p>واجهة جاهزة لتوليد المقاطع وتحويل أفكارك إلى مشاهد سينمائية. زر الاستوديو يعمل الآن.</p>
+            <button class="hero-btn" onclick="document.getElementById('imagePrompt').focus()">فتح استوديو الصور</button>
         </div>
 
-        <!-- Navigation Tabs -->
-        <div class="tabs-container">
-            <button class="tab-btn active" onclick="switchTab('image')">توليد الصور</button>
-            <button class="tab-btn" onclick="switchTab('animate')">تحريك الصور</button>
-            <button class="tab-btn" onclick="switchTab('video')">توليد الفيديو</button>
-        </div>
+        <div class="ad-box">إعلان مميز</div>
 
-        <!-- 1. Image Generation Panel -->
-        <div class="tool-panel active" id="panel-image">
-            <div class="tool-title">🖼️ توليد الصور بالذكاء الاصطناعي</div>
-            <textarea id="imagePrompt" rows="3" placeholder="مثال: قطة بيضاء تحت المطر في مدينة مستقبلية مضاءة بالنيون، مشهد سينمائي واقعي..."></textarea>
-            <button class="action-btn" onclick="generateImage()">إنشاء الصورة</button>
-            
-            <div class="result-box" id="imageResultBox">
-                <img id="generatedImage" src="" alt="الصورة المولدة">
-                <!-- زر التنزيل المرتبط بمشاهدة إعلان فيديو قصير -->
-                <button class="action-btn" style="font-size:12px; padding:8px 16px; background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);" onclick="watchAdAndDownload('image')">مشاهدة إعلان وتنزيل الصورة</button>
+        <!-- الكارت الرئيسي المدمج (بنفس شكل وتنسيق صورتك بالضبط) -->
+        <div class="tool-card">
+            <div class="card-header-title">
+                <span id="panelTitle">توليد الصور</span>
+                <div class="icon-badge" id="panelIcon">🖼️</div>
+            </div>
+
+            <!-- التابات الداخلية -->
+            <div class="inner-tabs">
+                <button class="inner-tab active" onclick="switchSubTab('image')">الصور</button>
+                <button class="inner-tab" onclick="switchSubTab('animate')">التحريك</button>
+                <button class="inner-tab" onclick="switchSubTab('video')">الفيديو</button>
+            </div>
+
+            <!-- 1. لوحة توليد الصور -->
+            <div class="sub-panel active" id="sub-image">
+                <p style="font-size: 12px; color: var(--text-muted);">اكتب وصفاً للصورة التي تتخيلها.</p>
+                <textarea id="imagePrompt" rows="3" placeholder="قطة بيضاء..."></textarea>
+                <p style="font-size: 11px; color: var(--text-muted);">التوليد يستخدم خادم Khayal AI الحالي، ولا يحتاج منك إلى إدخال أي مفتاح.</p>
+                <button class="action-btn" onclick="generateImage()">إنشاء الصورة</button>
+
+                <div class="result-box" id="imageResultBox">
+                    <img id="generatedImg" src="" alt="الصورة الناتجة">
+                    <button class="action-btn" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); font-size:12px; padding:8px;" onclick="startAdAndDownload('image')">مشاهدة إعلان وتنزيل الصورة</button>
+                </div>
+            </div>
+
+            <!-- 2. لوحة تحريك الصور (مع خانة رفع الصور المطلوبة) -->
+            <div class="sub-panel" id="sub-animate">
+                <p style="font-size: 12px; color: var(--text-muted);">مساحة مخصصة لتحويل الصور الثابتة إلى مشاهد متحركة.</p>
+                <input type="file" id="uploadImageFile" accept="image/*">
+                <button class="action-btn" onclick="processAnimation()">تجهيز التحريك</button>
+
+                <div class="result-box" id="animateResultBox">
+                    <video id="animatedVideoRes" controls loop muted></video>
+                    <button class="action-btn" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); font-size:12px; padding:8px;" onclick="startAdAndDownload('animation')">مشاهدة إعلان وتنزيل النتيجة</button>
+                </div>
+            </div>
+
+            <!-- 3. لوحة توليد الفيديو -->
+            <div class="sub-panel" id="sub-video">
+                <p style="font-size: 12px; color: var(--text-muted);">جهّز وصف المشهد والفيديو ليكون جاهزاً عند ربط محرك الفيديو.</p>
+                <textarea id="videoPrompt" rows="3" placeholder="وصف الفيديو القصير..."></textarea>
+                <button class="action-btn" onclick="generateVideo()">توليد الفيديو</button>
+
+                <div class="result-box" id="videoResultBox">
+                    <video id="generatedVideoRes" controls loop></video>
+                    <button class="action-btn" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); font-size:12px; padding:8px;" onclick="startAdAndDownload('video')">مشاهدة إعلان وتنزيل الفيديو</button>
+                </div>
             </div>
         </div>
 
-        <!-- 2. Image Animation Panel -->
-        <div class="tool-panel" id="panel-animate">
-            <div class="tool-title">🎬 تحريك الصور الثابتة</div>
-            <p style="font-size: 12px; color: var(--muted);">ارفع صورة ثابتة لإضافة تأثيرات الحركة السينمائية الحية عليها:</p>
-            <input type="file" id="imageUploadInput" accept="image/*">
-            <button class="action-btn" onclick="animateImage()">معالجة وتحريك الصورة</button>
-
-            <div class="result-box" id="animateResultBox">
-                <video id="animatedVideoResult" controls loop muted></video>
-                <button class="action-btn" style="font-size:12px; padding:8px 16px; background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);" onclick="watchAdAndDownload('animation')">مشاهدة إعلان وتنزيل النتيجة</button>
-            </div>
-        </div>
-
-        <!-- 3. Video Generation Panel -->
-        <div class="tool-panel" id="panel-video">
-            <div class="tool-title">🎥 توليد فيديو قصير من الوصف</div>
-            <textarea id="videoPrompt" rows="3" placeholder="اكتب وصفاً مفصلاً للمشهد المتحرك الذي تريد توليده..."></textarea>
-            <button class="action-btn" onclick="generateVideo()">توليد الفيديو القصير</button>
-
-            <div class="result-box" id="videoResultBox">
-                <video id="generatedVideo" controls loop></video>
-                <button class="action-btn" style="font-size:12px; padding:8px 16px; background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);" onclick="watchAdAndDownload('video')">مشاهدة إعلان وتنزيل الفيديو</button>
-            </div>
-        </div>
-
-        <!-- Ad Banner (مساحة الإعلانات السفلية) -->
-        <div class="ad-banner">
-            <span>مساحة إعلانية إضافية</span>
-        </div>
+        <div class="ad-box">مساحة إعلانية إضافية</div>
     </div>
 
-    <!-- Auth Modal (نافذة الحسابات وتسجيل الدخول) -->
-    <div class="modal" id="authModal">
+    <!-- نافذة تسجيل الدخول -->
+    <div class="modal-overlay" id="authModal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3 style="font-size: 16px;">حساب المستخدم الشخصي</h3>
-                <button class="close-modal" onclick="closeAuthModal()">✕</button>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="font-size: 15px;">حساب المستخدم</h3>
+                <button onclick="closeAuth()" style="background:none; border:none; color:var(--text-muted); font-size:16px; cursor:pointer;">✕</button>
             </div>
-            <p style="font-size: 12px; color: var(--muted);">سجل دخولك لحفظ إبداعاتك ومتابعة رصيدك المجاني.</p>
-            <input type="text" id="usernameInput" placeholder="اسم المستخدم أو البريد الإلكتروني">
-            <input type="password" id="passwordInput" placeholder="كلمة المرور الخاصة بك" style="margin-top: 5px;">
-            <button class="action-btn" onclick="handleAuth()">تسجيل الدخول / إنشاء حساب</button>
+            <input type="text" id="usernameInput" placeholder="اسم المستخدم">
+            <input type="password" id="passwordInput" placeholder="كلمة المرور">
+            <button class="action-btn" onclick="saveAuthUser()">تسجيل الدخول</button>
         </div>
     </div>
 
-    <!-- Ad Simulation Modal (نافذة محاكاة مشاهدة الإعلان لتحرير التنزيل) -->
-    <div class="modal" id="adModal">
-        <div class="modal-content" style="text-align: center;">
-            <h3 style="font-size: 16px; margin-bottom: 5px;">إعلان قصير لدعم المنصة المجانية</h3>
-            <p style="font-size: 12px; color: var(--muted); margin-bottom: 15px;">سيتم فتح رابط التنزيل فور انتهاء عرض الإعلان القصير...</p>
-            <div id="adCountdown" style="font-size: 24px; font-weight: bold; color: var(--accent); margin: 15px 0;">3</div>
-            <div class="loading"></div>
+    <!-- نافذة الإعلان -->
+    <div class="modal-overlay" id="adModal">
+        <div class="modal-content">
+            <h3 style="font-size: 14px; margin-bottom: 4px;">إعلان قصير لدعم المنصة المجانية</h3>
+            <p style="font-size: 11px; color: var(--text-muted);">سيتم بدء التنزيل بعد انتهاء الإعلان...</p>
+            <div id="adCountdownNum" style="font-size: 22px; font-weight: bold; color: #a855f7; margin: 10px 0;">3</div>
+            <div class="spinner"></div>
         </div>
     </div>
 
     <script>
-        // المتغيرات المؤقتة لتخزين الروابط الحالية الجاهزة للتنزيل
-        let currentDownloadUrl = '';
-        let currentDownloadType = '';
+        let fileUrlToDownload = '';
+        let fileExtension = '';
 
-        // التبديل بين التبويبات
-        function switchTab(tabName) {
-            document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        function switchSubTab(tab) {
+            document.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
 
-            if (tabName === 'image') {
-                document.getElementById('panel-image').classList.add('active');
-                document.querySelectorAll('.tab-btn')[0].classList.add('active');
-            } else if (tabName === 'animate') {
-                document.getElementById('panel-animate').classList.add('active');
-                document.querySelectorAll('.tab-btn')[1].classList.add('active');
-            } else if (tabName === 'video') {
-                document.getElementById('panel-video').classList.add('active');
-                document.querySelectorAll('.tab-btn')[2].classList.add('active');
+            const titleElem = document.getElementById('panelTitle');
+            const iconElem = document.getElementById('panelIcon');
+
+            if (tab === 'image') {
+                document.getElementById('sub-image').classList.add('active');
+                document.querySelectorAll('.inner-tab')[0].classList.add('active');
+                titleElem.innerText = 'توليد الصور';
+                iconElem.innerText = '🖼️';
+            } else if (tab === 'animate') {
+                document.getElementById('sub-animate').classList.add('active');
+                document.querySelectorAll('.inner-tab')[1].classList.add('active');
+                titleElem.innerText = 'تحريك الصور';
+                iconElem.innerText = '✨';
+            } else if (tab === 'video') {
+                document.getElementById('sub-video').classList.add('active');
+                document.querySelectorAll('.inner-tab')[2].classList.add('active');
+                titleElem.innerText = 'توليد الفيديو';
+                iconElem.innerText = '🎥';
             }
         }
 
-        // 1. توليد الصور (يعمل بكفاءة عالية وبشكل مجاني تماماً)
         function generateImage() {
-            const prompt = document.getElementById('imagePrompt').value.trim();
-            if (!prompt) {
-                alert('الرجاء كتابة وصف دقيق للصورة أولاً!');
+            const text = document.getElementById('imagePrompt').value.trim();
+            if (!text) {
+                alert('الرجاء كتابة الوصف أولاً!');
                 return;
             }
 
             const btn = event.target;
-            btn.innerHTML = '<div class="loading"></div> جاري معالجة وتوليد الصورة...';
-            
-            const encodedPrompt = encodeURIComponent(prompt);
-            const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&nologo=true`;
+            btn.innerHTML = '<span class="spinner"></span> جاري توليد الصورة...';
 
-            const imgElement = document.getElementById('generatedImage');
-            imgElement.src = imageUrl;
-            
-            imgElement.onload = function() {
+            const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(text)}?width=512&height=512&nologo=true`;
+            const imgTarget = document.getElementById('generatedImg');
+            imgTarget.src = url;
+
+            imgTarget.onload = function() {
                 document.getElementById('imageResultBox').style.display = 'flex';
-                currentDownloadUrl = imageUrl;
-                currentDownloadType = 'image/jpeg';
+                fileUrlToDownload = url;
+                fileExtension = 'jpg';
                 btn.innerHTML = 'إنشاء الصورة';
             };
         }
 
-        // 2. تحريك الصور
-        function animateImage() {
-            const fileInput = document.getElementById('imageUploadInput');
+        function processAnimation() {
+            const fileInput = document.getElementById('uploadImageFile');
             if (fileInput.files.length === 0) {
                 alert('الرجاء اختيار صورة ثابتة من هاتفك أولاً!');
                 return;
             }
 
             const btn = event.target;
-            btn.innerHTML = '<div class="loading"></div> جاري تطبيق تأثيرات الحركة...';
+            btn.innerHTML = '<span class="spinner"></span> جاري معالجة الحركة...';
 
             setTimeout(() => {
-                const videoBox = document.getElementById('animatedVideoResult');
-                const sampleVideoUrl = 'https://www.w3schools.com/html/mov_bbb.mp4';
-                videoBox.src = sampleVideoUrl;
+                const sampleVid = 'https://www.w3schools.com/html/mov_bbb.mp4';
+                const videoBox = document.getElementById('animatedVideoRes');
+                videoBox.src = sampleVid;
                 document.getElementById('animateResultBox').style.display = 'flex';
-                currentDownloadUrl = sampleVideoUrl;
-                currentDownloadType = 'video/mp4';
-                btn.innerHTML = 'معالجة وتحريك الصورة';
+                fileUrlToDownload = sampleVid;
+                fileExtension = 'mp4';
+                btn.innerHTML = 'تجهيز التحريك';
             }, 1500);
         }
 
-        // 3. توليد الفيديو من الوصف
         function generateVideo() {
-            const prompt = document.getElementById('videoPrompt').value.trim();
-            if (!prompt) {
-                alert('الرجاء كتابة وصف الفيديو المطلوب أولاً!');
+            const text = document.getElementById('videoPrompt').value.trim();
+            if (!text) {
+                alert('الرجاء كتابة وصف الفيديو أولاً!');
                 return;
             }
 
             const btn = event.target;
-            btn.innerHTML = '<div class="loading"></div> جاري إنتاج المشهد السينمائي...';
+            btn.innerHTML = '<span class="spinner"></span> جاري إنشاء الفيديو...';
 
             setTimeout(() => {
-                const videoElement = document.getElementById('generatedVideo');
-                const sampleVideoUrl = 'https://www.w3schools.com/html/mov_bbb.mp4';
-                videoElement.src = sampleVideoUrl;
+                const sampleVid = 'https://www.w3schools.com/html/mov_bbb.mp4';
+                const vidTarget = document.getElementById('generatedVideoRes');
+                vidTarget.src = sampleVid;
                 document.getElementById('videoResultBox').style.display = 'flex';
-                currentDownloadUrl = sampleVideoUrl;
-                currentDownloadType = 'video/mp4';
-                btn.innerHTML = 'توليد الفيديو القصير';
+                fileUrlToDownload = sampleVid;
+                fileExtension = 'mp4';
+                btn.innerHTML = 'توليد الفيديو';
             }, 2000);
         }
 
-        // نظام مشاهدة الإعلان لإلغاء قفل التنزيل المجاني
-        function watchAdAndDownload(type) {
+        function startAdAndDownload(type) {
             document.getElementById('adModal').style.display = 'flex';
-            let timeLeft = 3;
-            document.getElementById('adCountdown').innerText = timeLeft;
+            let timer = 3;
+            document.getElementById('adCountdownNum').innerText = timer;
 
-            let timer = setInterval(() => {
-                timeLeft--;
-                document.getElementById('adCountdown').innerText = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
+            let countdownInterval = setInterval(() => {
+                timer--;
+                document.getElementById('adCountdownNum').innerText = timer;
+                if (timer <= 0) {
+                    clearInterval(countdownInterval);
                     document.getElementById('adModal').style.display = 'none';
                     executeDownload();
                 }
@@ -532,38 +514,40 @@
         }
 
         function executeDownload() {
-            if (!currentDownloadUrl) return;
+            if (!fileUrlToDownload) return;
             const a = document.createElement('a');
-            a.href = currentDownloadUrl;
-            a.download = 'Khayal-AI-Creation.' + (currentDownloadType.includes('image') ? 'jpg' : 'mp4');
+            a.href = fileUrlToDownload;
+            a.download = 'Khayal-AI.' + fileExtension;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
         }
 
-        // إدارة نظام تسجيل الدخول والحسابات
-        function openAuthModal() {
+        function openAuth() {
             document.getElementById('authModal').style.display = 'flex';
         }
 
-        function closeAuthModal() {
+        function closeAuth() {
             document.getElementById('authModal').style.display = 'none';
         }
 
-        function handleAuth() {
-            const user = document.getElementById('usernameInput').value.trim();
-            const pass = document.getElementById('passwordInput').value.trim();
-            if (!user || !pass) {
-                alert('الرجاء إكمال اسم المستخدم وكلمة المرور');
+        function saveAuthUser() {
+            const username = document.getElementById('usernameInput').value.trim();
+            if (!username) {
+                alert('أدخل اسم المستخدم');
                 return;
             }
-
-            localStorage.setItem('khayal_user', user);
-            document.getElementById('authBtn').innerText = user;
-            closeAuthModal();
-            alert('تم تسجيل الدخول بنجاح وبدء حفظ الجلسة!');
+            localStorage.setItem('khayal_user', username);
+            document.getElementById('authBtnText').innerText = username;
+            closeAuth();
         }
 
-        // التحقق من حساب المستخدم المسجل مسبقاً
         window.onload = function() {
-            const saved
+            const saved = localStorage.getItem('khayal_user');
+            if (saved) {
+                document.getElementById('authBtnText').innerText = saved;
+            }
+        }
+    </script>
+</body>
+</html>
