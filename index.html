@@ -805,7 +805,6 @@
         else generateBtn.textContent = 'تجهيز التحريك';
       }
     }
-
     generateBtn.addEventListener('click', generateImage);
 
     promptBox.addEventListener('keydown', e => {
@@ -813,6 +812,44 @@
         generateImage();
       }
     });
+ async function animateUserImage(imageBlobOrUrl) {
+    const API_TOKEN = "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"; // الصق رمزك هنا بين علامتي التنصيص
+    
+    const modelURL = "https://api-inference.huggingface.co/models/stabilityai/stable-video-diffusion-img2vid";
+
+    try {
+        console.log("جاري إرسال الصورة لتحريكها وتوليد الفيديو...");
+        
+        let imageBlob = imageBlobOrUrl;
+        if (typeof imageBlobOrUrl === 'string') {
+            const response = await fetch(imageBlobOrUrl);
+            imageBlob = await response.blob();
+        }
+
+        const apiResponse = await fetch(modelURL, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${API_TOKEN}`,
+                "Content-Type": "application/json"
+            },
+            body: imageBlob
+        });
+
+        if (!apiResponse.ok) {
+            throw new Error("النموذج قيد التحميل حالياً، حاول مرة أخرى بعد قليل.");
+        }
+
+        const videoBlob = await apiResponse.blob();
+        const videoUrl = URL.createObjectURL(videoBlob);
+
+        showGeneratedVideo(videoUrl);
+
+    } catch (error) {
+        console.error("حدث خطأ أثناء توليد الفيديو:", error);
+        alert("حدث ضغط على السيرفر المجاني، يرجى المحاولة مجدداً.");
+    }
+}
+   
   </script>
 </body>
 </html>
